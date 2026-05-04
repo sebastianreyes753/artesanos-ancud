@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Artesanos de Ancud | Tradición y Patrimonio</title>
+    <!-- Tipografías: Lora para elegancia rústica y Montserrat para lectura limpia -->
+    <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,700;1,400&family=Montserrat:wght@300;500&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --hueso: #F9F7F2;
+            --madera: #5D4037;
+            --tierra: #D4A373;
+            --texto: #4A443F;
+            --blanco: #ffffff;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: 'Montserrat', sans-serif;
+            background-color: var(--hueso);
+            color: var(--texto);
+            line-height: 1.6;
+        }
+
+        h1, h2, h3 { font-family: 'Lora', serif; color: var(--madera); }
+
+        /* Navegación */
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 5%;
+            background-color: rgba(249, 247, 242, 0.95);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            border-bottom: 1px solid #E5DED1;
+        }
+
+        .navbar ul { display: flex; list-style: none; }
+        .navbar ul li { margin-left: 30px; }
+        .navbar a { text-decoration: none; color: var(--madera); font-weight: 500; transition: 0.3s; }
+        .navbar a:hover { color: var(--tierra); }
+
+        /* Hero - Usando tu imagen de cestería */
+        .hero {
+            height: 70vh;
+            background: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), 
+                        url('1590699515320501911.jpeg'); /* Asegúrate de que el nombre coincida */
+            background-size: cover;
+            background-position: center;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            color: var(--blanco);
+        }
+
+        .hero-content h1 { font-size: 3rem; color: var(--blanco); margin-bottom: 15px; }
+        .btn-warm {
+            display: inline-block;
+            padding: 12px 35px;
+            background-color: var(--tierra);
+            color: white;
+            text-decoration: none;
+            border-radius: 4px;
+            font-weight: bold;
+            transition: 0.3s;
+        }
+
+        /* Sección de Fotos (Atraer Público) */
+        .gallery-section { padding: 60px 5%; text-align: center; }
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin-top: 40px;
+        }
+
+        .gallery-item {
+            overflow: hidden;
+            border-radius: 8px;
+            background: var(--blanco);
+            box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+            transition: transform 0.3s ease;
+        }
+
+        .gallery-item:hover { transform: translateY(-5px); }
+        .gallery-item img { width: 100%; height: 300px; object-fit: cover; display: block; }
+        .gallery-item p { padding: 15px; font-style: italic; font-size: 0.9rem; }
+
+        footer { background: var(--madera); color: var(--hueso); padding: 40px 5%; text-align: center; }
+    </style>
+</head>
+<body>
+
+    <header class="navbar">
+        <div class="logo"><strong>ARTESANOS DE ANCUD</strong></div>
+        <nav>
+            <ul>
+                <li><a href="#inicio">Inicio</a></li>
+                <li><a href="#artesanas">Artesanas</a></li>
+                <li><a href="#contacto">Contacto</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <section id="inicio" class="hero">
+        <div class="hero-content">
+            <h1>Tradición y Patrimonio</h1>
+            <p>Descubre el alma de Chiloé en cada tejido y tallado.</p>
+            <a href="#artesanas" class="btn-warm">Ver el Oficio</a>
+        </div>
+    </section>
+
+    <section id="artesanas" class="gallery-section">
+        <h2>Manos que Crean</h2>
+        <p>El calor de la lana de oveja y el aroma de la madera nativa.</p>
+        
+        <div class="gallery-grid">
+            <div class="gallery-item">
+                <img src="foto1.jpg" alt="Artesana tejiendo">
+                <p>El arte del telar de quelgo.</p>
+            </div>
+            <div class="gallery-item">
+                <img src="foto2.jpg" alt="Lana chilota">
+                <p>Lana de oveja teñida naturalmente.</p>
+            </div>
+            <div class="gallery-item">
+                <img src="foto3.jpg" alt="Taller de madera">
+                <p>Tallado en maderas nativas de la isla.</p>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <p>&copy; 2026 Agrupación de Artesanos y Oficios de Ancud</p>
+        <p>III Muestra Provincial - Tradición y Patrimonio</p>
+    </footer>
+
+</body>
+</html>
