@@ -8,47 +8,49 @@
     <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,700;1,400&family=Montserrat:wght@300;500;700&display=swap" rel="stylesheet">
     <style>
         :root {
-            --hueso: #F9F7F2; --madera: #5D4037; --tierra: #D4A373; --texto: #4A443F; --blanco: #ffffff; --shadow: 0 4px 12px rgba(0,0,0,0.08);
+            --hueso: #F9F7F2; --madera: #5D4037; --tierra: #B5835A; --texto: #4A443F; --blanco: #ffffff; --shadow: 0 8px 20px rgba(0,0,0,0.05);
         }
-        * { margin: 0; padding: 0; box-sizing: border-box; }
+        
+        html, body { height: 100%; margin: 0; display: flex; flex-direction: column; }
         body { font-family: 'Montserrat', sans-serif; background-color: var(--hueso); color: var(--texto); line-height: 1.6; }
+        main { flex: 1; }
+
         h1, h2, h3 { font-family: 'Lora', serif; color: var(--madera); }
         
-        .navbar { display: flex; justify-content: space-between; align-items: center; padding: 0 5%; height: 80px; background-color: rgba(249, 247, 242, 0.98); position: sticky; top: 0; z-index: 2000; border-bottom: 1px solid #E5DED1; box-shadow: var(--shadow); }
+        /* Navegación */
+        .navbar { display: flex; justify-content: space-between; align-items: center; padding: 0 5%; height: 85px; background-color: rgba(249, 247, 242, 0.98); position: sticky; top: 0; z-index: 2000; border-bottom: 2px solid #E5DED1; box-shadow: var(--shadow); }
         .logo-container { display: flex; align-items: center; text-decoration: none; color: var(--madera); }
-        .logo-img { height: 60px; width: auto; margin-right: 12px; }
+        .logo-nav-img { height: 60px; margin-right: 12px; }
         .nav-links { display: flex; list-style: none; align-items: center; }
-        .nav-links li { margin-left: 25px; position: relative; }
-        .nav-links a { text-decoration: none; color: var(--madera); font-weight: 600; font-size: 0.9rem; transition: 0.3s; }
+        .nav-links li { margin-left: 25px; }
+        .nav-links a { text-decoration: none; color: var(--madera); font-weight: 600; font-size: 0.9rem; text-transform: uppercase; transition: 0.3s; }
         .nav-links a:hover { color: var(--tierra); }
-        
-        .dropdown-content { display: none; position: absolute; background: var(--blanco); min-width: 180px; top: 100%; left: 0; box-shadow: var(--shadow); border-radius: 4px; padding: 10px 0; }
-        .dropdown-content a { padding: 10px 20px; display: block; }
-        .dropdown:hover .dropdown-content { display: block; }
-        .hamburger { display: none; cursor: pointer; flex-direction: column; gap: 5px; }
-        .hamburger span { width: 28px; height: 3px; background: var(--madera); border-radius: 2px; }
 
-        /* Formulario centrado */
-        section { padding: 60px 5%; text-align: center; min-height: 70vh; display: flex; flex-direction: column; justify-content: center; align-items: center; }
-        h2 { font-size: 2.2rem; margin-bottom: 10px; }
-        .subtitle { color: #777; margin-bottom: 30px; }
+        /* Sección Contacto */
+        section { padding: 60px 5%; text-align: center; }
         
-        .contact-container { width: 100%; max-width: 600px; background: var(--blanco); padding: 40px; border-radius: 12px; box-shadow: var(--shadow); text-align: left; }
+        /* Contenedor del Logo en el cuerpo */
+        .contact-logo-box { margin-bottom: 20px; }
+        .contact-logo { height: 120px; width: auto; filter: drop-shadow(0 4px 8px rgba(0,0,0,0.1)); }
+
+        h2 { font-size: 2.5rem; margin-bottom: 10px; }
+        .subtitle { color: #777; margin-bottom: 40px; font-style: italic; }
+        
+        .contact-container { width: 100%; max-width: 600px; background: var(--blanco); padding: 40px; border-radius: 12px; box-shadow: var(--shadow); text-align: left; margin: 0 auto; border-top: 5px solid var(--tierra); }
         .form-group { margin-bottom: 20px; }
-        .form-group label { display: block; margin-bottom: 8px; font-weight: 600; font-size: 0.9rem; }
-        .form-group input, .form-group textarea { width: 100%; padding: 12px; border: 1px solid #ddd; border-radius: 8px; font-family: inherit; outline-color: var(--tierra); }
+        .form-group label { display: block; margin-bottom: 8px; font-weight: 600; font-size: 0.9rem; color: var(--madera); }
+        .form-group input, .form-group textarea { width: 100%; padding: 12px; border: 1px solid #E5DED1; border-radius: 8px; font-family: inherit; background-color: #fdfdfd; }
+        .form-group input:focus, .form-group textarea:focus { outline: 2px solid var(--tierra); border-color: transparent; }
         
-        .btn-warm { display: inline-block; padding: 15px 40px; background-color: var(--tierra); color: white; text-decoration: none; border-radius: 50px; font-weight: 700; transition: 0.3s; border: none; cursor: pointer; width: 100%; box-shadow: 0 4px 15px rgba(212, 163, 115, 0.4); }
-        .btn-warm:hover { background-color: var(--madera); }
+        .btn-warm { display: inline-block; padding: 15px 40px; background-color: var(--tierra); color: white; text-decoration: none; border-radius: 4px; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; transition: 0.3s; border: none; cursor: pointer; width: 100%; }
+        .btn-warm:hover { background-color: var(--madera); transform: translateY(-2px); }
 
         footer { background: var(--madera); color: var(--hueso); padding: 40px 5%; text-align: center; }
+        .footer-line { width: 100%; height: 1px; background: rgba(255,255,255,0.1); margin: 20px 0; }
 
-        @media (max-width: 992px) {
-            .hamburger { display: flex; }
-            .nav-links { position: fixed; top: 80px; left: -100%; width: 100%; height: calc(100vh - 80px); background: var(--hueso); flex-direction: column; padding-top: 50px; transition: 0.4s; }
-            .nav-links.active { left: 0; }
-            .nav-links li { margin: 20px 0; }
-            .dropdown-content { position: static; box-shadow: none; background: transparent; text-align: center; }
+        @media (max-width: 768px) {
+            .nav-links { display: none; }
+            .contact-container { padding: 25px; }
         }
     </style>
 </head>
@@ -56,56 +58,55 @@
 
 <header class="navbar">
     <a href="index.html" class="logo-container">
-        <img src="https://drive.google.com/thumbnail?id=17zcF4Qc9yRwIVoauzdQVPPr6f3JUfLmI&sz=w500" alt="Artesanos de Ancud" class="logo-img">
-        <strong>ARTESANOS DE CHILOÉ</strong>
+        <img src="https://drive.google.com/thumbnail?id=17zcF4Qc9yRwIVoauzdQVPPr6f3JUfLmI&sz=w500" alt="Logo" class="logo-nav-img">
+        <strong>ARTESANOS DE ANCUD</strong>
     </a>
-    <div class="hamburger" id="hamburger"><span></span><span></span><span></span></div>
     <nav>
-        <ul class="nav-links" id="nav-links">
+        <ul class="nav-links">
             <li><a href="index.html">Inicio</a></li>
-            <li class="dropdown">
-                <a href="artesanos.html">Artesanos ▼</a>
-                <div class="dropdown-content">
-                    <a href="index.html#nosotros">Nuestra Misión</a>
-                    <a href="artesanos.html">Ver Oficios</a>
-                </div>
-            </li>
+            <li><a href="artesanos.html">Artesanos</a></li>
+            <li><a href="noticias.html">Noticias</a></li>
             <li><a href="contacto.html" style="color: var(--tierra);">Contacto</a></li>
         </ul>
     </nav>
 </header>
 
-<section>
-    <h2>Contacto</h2>
-    <p class="subtitle">¿Tienes consultas sobre la muestra? Escríbenos.</p>
-    <div class="contact-container">
-        <form action="https://formspree.io/f/tu-id" method="POST">
-            <div class="form-group">
-                <label>Nombre Completo</label>
-                <input type="text" name="name" placeholder="Ej: Juan Pérez" required>
-            </div>
-            <div class="form-group">
-                <label>Correo Electrónico</label>
-                <input type="email" name="email" placeholder="nombre@correo.com" required>
-            </div>
-            <div class="form-group">
-                <label>Mensaje</label>
-                <textarea name="message" rows="5" placeholder="¿En qué podemos ayudarte?" required></textarea>
-            </div>
-            <button type="submit" class="btn-warm">Enviar Mensaje</button>
-        </form>
-    </div>
-</section>
+<main>
+    <section>
+        <div class="contact-logo-box">
+            <img src="https://drive.google.com/thumbnail?id=17zcF4Qc9yRwIVoauzdQVPPr6f3JUfLmI&sz=w1000" alt="Logo Artesanos" class="contact-logo">
+        </div>
+
+        <h2>Contacto</h2>
+        <p class="subtitle">¿Tienes consultas sobre la muestra o nuestros oficios? Escríbenos.</p>
+        
+        <div class="contact-container">
+            <form action="#" method="POST">
+                <div class="form-group">
+                    <label>Nombre Completo</label>
+                    <input type="text" name="name" placeholder="Ej: Juan Pérez" required>
+                </div>
+                <div class="form-group">
+                    <label>Correo Electrónico</label>
+                    <input type="email" name="email" placeholder="nombre@correo.com" required>
+                </div>
+                <div class="form-group">
+                    <label>Mensaje</label>
+                    <textarea name="message" rows="5" placeholder="Cuéntanos en qué podemos ayudarte..." required></textarea>
+                </div>
+                <button type="submit" class="btn-warm">Enviar Mensaje</button>
+            </form>
+        </div>
+    </section>
+</main>
 
 <footer>
-    <p>&copy; 2026 Agrupación de Artesanos y Oficios de Ancud</p>
-    <p>Diseñado por Sebastián Reyes Caimapo</p>
+    <div style="max-width: 800px; margin: 0 auto;">
+        <p><strong>© 2026 Agrupación de Artesanos y Oficios de Ancud</strong></p>
+        <div class="footer-line"></div>
+        <p style="font-size: 0.8rem; opacity: 0.7;">Diseñado por Sebastián Reyes Caimapo</p>
+    </div>
 </footer>
 
-<script>
-    const hamburger = document.getElementById('hamburger');
-    const navLinks = document.getElementById('nav-links');
-    hamburger.addEventListener('click', () => { navLinks.classList.toggle('active'); hamburger.classList.toggle('active'); });
-</script>
 </body>
 </html>
