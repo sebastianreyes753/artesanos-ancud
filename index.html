@@ -52,14 +52,20 @@
             z-index: 2001;
         }
 
-        .logo-img { height: 55px; margin-right: 12px; border-radius: 4px; }
+        /* Ajuste para evitar que el logo se vea roto */
+        .logo-img { 
+            height: 60px; 
+            width: auto;
+            margin-right: 12px; 
+            display: block;
+            object-fit: contain;
+        }
 
         .nav-links { display: flex; list-style: none; align-items: center; }
         .nav-links li { margin-left: 25px; position: relative; }
         .nav-links a { text-decoration: none; color: var(--madera); font-weight: 600; font-size: 0.9rem; transition: 0.3s; }
         .nav-links a:hover { color: var(--tierra); }
 
-        /* Dropdown */
         .dropdown-content {
             display: none;
             position: absolute;
@@ -74,7 +80,6 @@
         .dropdown-content a { padding: 10px 20px; display: block; }
         .dropdown:hover .dropdown-content { display: block; }
 
-        /* Menu Hamburguesa */
         .hamburger { display: none; cursor: pointer; flex-direction: column; gap: 5px; z-index: 2001; }
         .hamburger span { width: 28px; height: 3px; background: var(--madera); border-radius: 2px; transition: 0.3s; }
 
@@ -91,7 +96,15 @@
             color: var(--blanco);
         }
         .hero-content { display: flex; flex-direction: column; align-items: center; }
-        .hero-logo { height: 160px; width: auto; margin-bottom: 25px; filter: drop-shadow(0 4px 8px rgba(0,0,0,0.3)); }
+        
+        /* Logo más grande en el inicio */
+        .hero-logo { 
+            height: 180px; 
+            width: auto; 
+            margin-bottom: 20px; 
+            filter: drop-shadow(0 4px 10px rgba(0,0,0,0.3));
+        }
+
         .hero-content h1 { font-size: clamp(2.2rem, 6vw, 3.8rem); color: var(--blanco); margin-bottom: 15px; }
         .hero-content p { font-size: 1.2rem; margin-bottom: 30px; font-weight: 300; max-width: 600px; }
 
@@ -140,31 +153,8 @@
         .gallery-item:hover img { transform: scale(1.05); }
         .gallery-item p { padding: 20px; font-style: italic; font-weight: 500; }
 
-        /* --- CONTACTO --- */
-        .contact-container {
-            max-width: 600px;
-            margin: 0 auto;
-            background: var(--blanco);
-            padding: 40px;
-            border-radius: 12px;
-            box-shadow: var(--shadow);
-            text-align: left;
-        }
-        .form-group { margin-bottom: 20px; }
-        .form-group label { display: block; margin-bottom: 8px; font-weight: 600; font-size: 0.9rem; }
-        .form-group input, .form-group textarea {
-            width: 100%;
-            padding: 12px;
-            border: 1px solid #ddd;
-            border-radius: 8px;
-            font-family: inherit;
-            outline-color: var(--tierra);
-        }
-
         footer { background: var(--madera); color: var(--hueso); padding: 50px 5%; text-align: center; }
-        footer p:first-child { font-weight: 700; margin-bottom: 10px; }
-
-        /* --- RESPONSIVE --- */
+        
         @media (max-width: 992px) {
             .hamburger { display: flex; }
             .nav-links {
@@ -181,7 +171,7 @@
             .nav-links.active { left: 0; }
             .nav-links li { margin: 20px 0; }
             .dropdown-content { position: static; box-shadow: none; background: transparent; text-align: center; }
-            .hero-logo { height: 120px; }
+            .hero-logo { height: 140px; }
         }
     </style>
 </head>
@@ -189,8 +179,8 @@
 
 <header class="navbar">
     <a href="#inicio" class="logo-container">
-        <!-- Logo en Navbar -->
-        <img src="https://lh3.googleusercontent.com/d/17zcF4Qc9yRwIVoauzdQVPPr6f3JUfLmI" alt="Logo Artesanos" class="logo-img">
+        <!-- Logo en Navbar con link de respaldo -->
+        <img src="https://drive.google.com/thumbnail?id=17zcF4Qc9yRwIVoauzdQVPPr6f3JUfLmI&sz=w500" alt="Artesanos de Ancud" class="logo-img">
         <strong>ARTESANOS DE ANCUD</strong>
     </a>
     
@@ -215,8 +205,8 @@
 
 <section id="inicio" class="hero">
     <div class="hero-content">
-        <!-- Logo en Sección Hero -->
-        <img src="https://lh3.googleusercontent.com/d/17zcF4Qc9yRwIVoauzdQVPPr6f3JUfLmI" alt="Logo Grande" class="hero-logo">
+        <!-- Logo en Hero con link de respaldo -->
+        <img src="https://drive.google.com/thumbnail?id=17zcF4Qc9yRwIVoauzdQVPPr6f3JUfLmI&sz=w1000" alt="Logo III Muestra" class="hero-logo">
         <h1>Tradición y Patrimonio</h1>
         <p>Descubre el alma de Chiloé en cada tejido y tallado.</p>
         <a href="#artesanas" class="btn-warm">Ver el Oficio</a>
@@ -238,47 +228,6 @@
     </div>
 </section>
 
-<section id="artesanas">
-    <h2>Manos que Crean</h2>
-    <p class="section-subtitle">El calor de la lana de oveja y el aroma de la madera nativa de nuestra isla.</p>
-    <div class="grid">
-        <div class="gallery-item">
-            <img src="foto1.jpg" alt="Telar de Quelgo">
-            <p>El arte del telar de quelgo.</p>
-        </div>
-        <div class="gallery-item">
-            <img src="foto2.jpg" alt="Lana Natural">
-            <p>Lana de oveja teñida naturalmente.</p>
-        </div>
-        <div class="gallery-item">
-            <img src="foto3.jpg" alt="Maderas Nativas">
-            <p>Tallado en maderas nativas.</p>
-        </div>
-    </div>
-</section>
-
-<section id="contacto" style="background: #f2ede4;">
-    <h2>Contacto</h2>
-    <p class="section-subtitle">¿Tienes consultas sobre la muestra? Escríbenos.</p>
-    <div class="contact-container">
-        <form action="https://formspree.io/f/tu-id" method="POST">
-            <div class="form-group">
-                <label>Nombre Completo</label>
-                <input type="text" name="name" placeholder="Ej: Juan Pérez" required>
-            </div>
-            <div class="form-group">
-                <label>Correo Electrónico</label>
-                <input type="email" name="email" placeholder="nombre@correo.com" required>
-            </div>
-            <div class="form-group">
-                <label>Mensaje</label>
-                <textarea name="message" rows="5" placeholder="¿En qué podemos ayudarte?" required></textarea>
-            </div>
-            <button type="submit" class="btn-warm" style="width: 100%;">Enviar Mensaje</button>
-        </form>
-    </div>
-</section>
-
 <footer>
     <p>&copy; 2026 Agrupación de Artesanos y Oficios de Ancud</p>
     <p>Diseñado por Sebastián Reyes Caimapo</p>
@@ -296,6 +245,7 @@
     document.querySelectorAll('.nav-links a').forEach(link => {
         link.addEventListener('click', () => {
             navLinks.classList.remove('active');
+            hamburger.classList.remove('active');
         });
     });
 </script>
