@@ -3,50 +3,64 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Nuestros Artesanos | Artesanos de Ancud</title>
+    <title>Galería de Oficios | Artesanos de Ancud</title>
     <link rel="icon" type="image/png" href="https://drive.google.com/thumbnail?id=17zcF4Qc9yRwIVoauzdQVPPr6f3JUfLmI&sz=w32">
     <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,700;1,400&family=Montserrat:wght@300;500;700&display=swap" rel="stylesheet">
     <style>
         :root {
-            --hueso: #F9F7F2; --madera: #5D4037; --tierra: #D4A373; --texto: #4A443F; --blanco: #ffffff; --shadow: 0 4px 12px rgba(0,0,0,0.08);
+            --hueso: #F9F7F2; --madera: #5D4037; --tierra: #D4A373; --texto: #4A443F; --blanco: #ffffff; --shadow: 0 4px 15px rgba(0,0,0,0.1);
         }
         * { margin: 0; padding: 0; box-sizing: border-box; }
         body { font-family: 'Montserrat', sans-serif; background-color: var(--hueso); color: var(--texto); line-height: 1.6; }
         h1, h2, h3 { font-family: 'Lora', serif; color: var(--madera); }
         
-        .navbar { display: flex; justify-content: space-between; align-items: center; padding: 0 5%; height: 80px; background-color: rgba(249, 247, 242, 0.98); position: sticky; top: 0; z-index: 2000; border-bottom: 1px solid #E5DED1; box-shadow: var(--shadow); }
+        /* Navegación */
+        .navbar { display: flex; justify-content: space-between; align-items: center; padding: 0 5%; height: 80px; background-color: rgba(249, 247, 242, 0.98); position: sticky; top: 0; z-index: 2000; border-bottom: 1px solid #E5DED1; box-shadow: 0 2px 10px rgba(0,0,0,0.05); }
         .logo-container { display: flex; align-items: center; text-decoration: none; color: var(--madera); }
         .logo-img { height: 60px; width: auto; margin-right: 12px; }
         .nav-links { display: flex; list-style: none; align-items: center; }
         .nav-links li { margin-left: 25px; position: relative; }
-        .nav-links a { text-decoration: none; color: var(--madera); font-weight: 600; font-size: 0.9rem; transition: 0.3s; }
+        .nav-links a { text-decoration: none; color: var(--madera); font-weight: 600; transition: 0.3s; }
         .nav-links a:hover { color: var(--tierra); }
         
-        .dropdown-content { display: none; position: absolute; background: var(--blanco); min-width: 180px; top: 100%; left: 0; box-shadow: var(--shadow); border-radius: 4px; padding: 10px 0; }
-        .dropdown-content a { padding: 10px 20px; display: block; }
-        .dropdown:hover .dropdown-content { display: block; }
-        .hamburger { display: none; cursor: pointer; flex-direction: column; gap: 5px; }
-        .hamburger span { width: 28px; height: 3px; background: var(--madera); border-radius: 2px; }
+        /* Encabezado de Galería */
+        .gallery-header { padding: 80px 5% 40px; text-align: center; background: linear-gradient(to bottom, #f2ede4, var(--hueso)); }
+        .gallery-header h1 { font-size: 3rem; margin-bottom: 15px; }
+        .gallery-header p { max-width: 700px; margin: 0 auto; color: #666; font-size: 1.1rem; }
 
-        /* Contenido de la página */
-        .page-header { padding: 60px 5% 20px; text-align: center; background: #f2ede4; }
-        .page-header h1 { font-size: 2.5rem; margin-bottom: 10px; }
-        
-        section { padding: 60px 5%; text-align: center; }
-        .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; }
-        .gallery-item { border-radius: 12px; overflow: hidden; background: var(--blanco); box-shadow: var(--shadow); transition: 0.3s; }
-        .gallery-item:hover { transform: translateY(-5px); }
-        .gallery-item img { width: 100%; height: 350px; object-fit: cover; }
-        .gallery-item p { padding: 20px; font-style: italic; font-weight: 500; }
+        /* Cuadrícula de Galería */
+        .gallery-container { padding: 40px 5% 100px; }
+        .gallery-grid { 
+            display: grid; 
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); 
+            gap: 40px; 
+            max-width: 1200px; 
+            margin: 0 auto;
+        }
 
-        footer { background: var(--madera); color: var(--hueso); padding: 40px 5%; text-align: center; margin-top: 60px; }
+        .gallery-card { 
+            background: var(--blanco); 
+            border-radius: 15px; 
+            overflow: hidden; 
+            box-shadow: var(--shadow); 
+            transition: transform 0.4s ease;
+        }
+        .gallery-card:hover { transform: translateY(-10px); }
 
-        @media (max-width: 992px) {
-            .hamburger { display: flex; }
-            .nav-links { position: fixed; top: 80px; left: -100%; width: 100%; height: calc(100vh - 80px); background: var(--hueso); flex-direction: column; padding-top: 50px; transition: 0.4s; }
-            .nav-links.active { left: 0; }
-            .nav-links li { margin: 20px 0; }
-            .dropdown-content { position: static; box-shadow: none; background: transparent; text-align: center; }
+        .image-box { width: 100%; height: 400px; overflow: hidden; position: relative; }
+        .image-box img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.6s ease; }
+        .gallery-card:hover .image-box img { transform: scale(1.1); }
+
+        .info-box { padding: 25px; text-align: center; }
+        .info-box h3 { margin-bottom: 10px; font-size: 1.4rem; }
+        .info-box p { font-size: 0.95rem; color: #777; font-style: italic; }
+
+        footer { background: var(--madera); color: var(--hueso); padding: 40px 5%; text-align: center; }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .gallery-header h1 { font-size: 2.2rem; }
+            .image-box { height: 300px; }
         }
     </style>
 </head>
@@ -55,43 +69,65 @@
 <header class="navbar">
     <a href="index.html" class="logo-container">
         <img src="https://drive.google.com/thumbnail?id=17zcF4Qc9yRwIVoauzdQVPPr6f3JUfLmI&sz=w500" alt="Artesanos de Ancud" class="logo-img">
-        <strong>ARTESANOS DE CHILOÉ</strong>
+        <strong>ARTESANOS DE ANCUD</strong>
     </a>
-    <div class="hamburger" id="hamburger"><span></span><span></span><span></span></div>
     <nav>
-        <ul class="nav-links" id="nav-links">
+        <ul class="nav-links">
             <li><a href="index.html">Inicio</a></li>
-            <li class="dropdown">
-                <a href="artesanos.html" style="color: var(--tierra);">Artesanos ▼</a>
-                <div class="dropdown-content">
-                    <a href="index.html#nosotros">Nuestra Misión</a>
-                    <a href="artesanos.html">Ver Oficios</a>
-                </div>
-            </li>
+            <li><a href="artesanos.html" style="color: var(--tierra);">Artesanos</a></li>
             <li><a href="contacto.html">Contacto</a></li>
         </ul>
     </nav>
 </header>
 
-<div class="page-header">
+<div class="gallery-header">
     <h1>Manos que Crean</h1>
-    <p>El calor de la lana de oveja y el aroma de la madera nativa de nuestra isla.</p>
+    <p>Una muestra visual del trabajo que preserva nuestra identidad chilota. Cada pieza cuenta una historia de esfuerzo y herencia.</p>
 </div>
 
-<section>
-    <div class="grid">
-        <div class="gallery-item">
-            <img src="foto1.jpg" alt="Telar de Quelgo">
-            <p>El arte del telar de quelgo.</p>
+<section class="gallery-container">
+    <div class="gallery-grid">
+        
+        <div class="gallery-card">
+            <div class="image-box">
+                <img src="foto1.jpg" alt="Tejido en lana">
+            </div>
+            <div class="info-box">
+                <h3>Tejido en Quelgo</h3>
+                <p>Lana de oveja procesada a mano y tejida en telar tradicional.</p>
+            </div>
         </div>
-        <div class="gallery-item">
-            <img src="foto2.jpg" alt="Lana Natural">
-            <p>Lana de oveja teñida naturalmente.</p>
+
+        <div class="gallery-card">
+            <div class="image-box">
+                <img src="foto2.jpg" alt="Tallado en madera">
+            </div>
+            <div class="info-box">
+                <h3>Escultura en Madera</h3>
+                <p>Tallado fino en maderas nativas como Ciruelillo y Alerce.</p>
+            </div>
         </div>
-        <div class="gallery-item">
-            <img src="foto3.jpg" alt="Maderas Nativas">
-            <p>Tallado en maderas nativas.</p>
+
+        <div class="gallery-card">
+            <div class="image-box">
+                <img src="foto3.jpg" alt="Cestería">
+            </div>
+            <div class="info-box">
+                <h3>Cestería en Manilla</h3>
+                <p>Tradición ancestral en fibras vegetales de la costa ancuditana.</p>
+            </div>
         </div>
+
+        <div class="gallery-card">
+            <div class="image-box">
+                <img src="foto4.jpg" alt="Tintes naturales">
+            </div>
+            <div class="info-box">
+                <h3>Tintes Naturales</h3>
+                <p>Colores obtenidos de raíces, cortezas y flores locales.</p>
+            </div>
+        </div>
+
     </div>
 </section>
 
@@ -100,10 +136,5 @@
     <p>Diseñado por Sebastián Reyes Caimapo</p>
 </footer>
 
-<script>
-    const hamburger = document.getElementById('hamburger');
-    const navLinks = document.getElementById('nav-links');
-    hamburger.addEventListener('click', () => { navLinks.classList.toggle('active'); hamburger.classList.toggle('active'); });
-</script>
 </body>
 </html>
