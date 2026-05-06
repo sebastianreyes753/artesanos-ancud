@@ -22,6 +22,7 @@
             background-color: var(--hueso);
             color: var(--texto);
             line-height: 1.6;
+            scroll-behavior: smooth;
         }
 
         h1, h2, h3 { font-family: 'Lora', serif; color: var(--madera); }
@@ -31,7 +32,7 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 20px 5%;
+            padding: 10px 5%;
             background-color: rgba(249, 247, 242, 0.95);
             position: sticky;
             top: 0;
@@ -39,16 +40,28 @@
             border-bottom: 1px solid #E5DED1;
         }
 
+        .logo-container {
+            display: flex;
+            align-items: center;
+            text-decoration: none;
+            color: var(--madera);
+        }
+
+        .logo-img {
+            height: 50px; /* Ajusta el tamaño de tu logo aquí */
+            margin-right: 15px;
+        }
+
         .navbar ul { display: flex; list-style: none; }
         .navbar ul li { margin-left: 30px; }
         .navbar a { text-decoration: none; color: var(--madera); font-weight: 500; transition: 0.3s; }
         .navbar a:hover { color: var(--tierra); }
 
-        /* Hero - Usando tu imagen de cestería */
+        /* Hero */
         .hero {
             height: 70vh;
             background: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), 
-                        url('1590699515320501911.jpeg'); /* Asegúrate de que el nombre coincida */
+                        url('1590699515320501911.jpeg');
             background-size: cover;
             background-position: center;
             display: flex;
@@ -59,6 +72,7 @@
         }
 
         .hero-content h1 { font-size: 3rem; color: var(--blanco); margin-bottom: 15px; }
+        
         .btn-warm {
             display: inline-block;
             padding: 12px 35px;
@@ -68,10 +82,29 @@
             border-radius: 4px;
             font-weight: bold;
             transition: 0.3s;
+            border: none;
+            cursor: pointer;
+        }
+        .btn-warm:hover { background-color: var(--madera); }
+
+        /* Secciones */
+        section { padding: 60px 5%; text-align: center; }
+
+        /* Misión y Visión */
+        .info-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 40px;
+            margin-top: 40px;
+        }
+        .info-card {
+            padding: 30px;
+            border: 1px solid #E5DED1;
+            border-radius: 8px;
+            background: var(--blanco);
         }
 
-        /* Sección de Fotos (Atraer Público) */
-        .gallery-section { padding: 60px 5%; text-align: center; }
+        /* Galería */
         .gallery-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
@@ -91,27 +124,67 @@
         .gallery-item img { width: 100%; height: 300px; object-fit: cover; display: block; }
         .gallery-item p { padding: 15px; font-style: italic; font-size: 0.9rem; }
 
+        /* Contacto */
+        .contact-container {
+            max-width: 600px;
+            margin: 40px auto 0;
+            text-align: left;
+        }
+        .form-group { margin-bottom: 15px; }
+        .form-group label { display: block; margin-bottom: 5px; font-weight: 500; }
+        .form-group input, .form-group textarea {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #E5DED1;
+            border-radius: 4px;
+            font-family: inherit;
+        }
+
         footer { background: var(--madera); color: var(--hueso); padding: 40px 5%; text-align: center; }
     </style>
 </head>
 <body>
 
     <header class="navbar">
-        <div class="logo"><strong>ARTESANOS DE ANCUD</strong></div>
-        <nav>
-            <ul>
-                <li><a href="#inicio">Inicio</a></li>
-                <li><a href="#artesanas">Artesanas</a></li>
-                <li><a href="#contacto">Contacto</a></li>
-            </ul>
-        </nav>
-    </header>
+    <a href="#inicio" class="logo-container">
+        <img src="tu-logo.png" alt="Logo Artesanos" class="logo-img">
+        <strong>ARTESANOS DE ANCUD</strong>
+    </a>
+    <nav>
+        <ul class="nav-links">
+            <li><a href="#inicio">Inicio</a></li>
+            <li class="dropdown">
+                <a href="#artesanas" class="dropbtn">Artesanas ▼</a>
+                <div class="dropdown-content">
+                    <a href="#mision">Nuestra Misión</a>
+                    <a href="#vision">Nuestra Visión</a>
+                    <a href="#artesanas">Ver Oficios</a>
+                </div>
+            </li>
+            <li><a href="#contacto">Contacto</a></li>
+        </ul>
+    </nav>
+</header>
 
     <section id="inicio" class="hero">
         <div class="hero-content">
             <h1>Tradición y Patrimonio</h1>
             <p>Descubre el alma de Chiloé en cada tejido y tallado.</p>
             <a href="#artesanas" class="btn-warm">Ver el Oficio</a>
+        </div>
+    </section>
+
+    <section id="nosotros">
+        <h2>Nuestra Identidad</h2>
+        <div class="info-grid">
+            <div class="info-card">
+                <h3>Misión</h3>
+                <p>Promover y poner en valor el patrimonio cultural de los artesanos de la Provincia de Chiloé, visibilizando sus oficios y tradiciones locales.</p>
+            </div>
+            <div class="info-card">
+                <h3>Visión</h3>
+                <p>Ser el referente digital de la artesanía chilota, asegurando la preservación del conocimiento artesanal para las futuras generaciones.</p>
+            </div>
         </div>
     </section>
 
@@ -132,6 +205,28 @@
                 <img src="foto3.jpg" alt="Taller de madera">
                 <p>Tallado en maderas nativas de la isla.</p>
             </div>
+        </div>
+    </section>
+
+    <section id="contacto">
+        <h2>Contacto</h2>
+        <p>¿Tienes consultas? Escríbenos y te responderemos a la brevedad.</p>
+        <div class="contact-container">
+            <form action="https://formspree.io/f/tu-id" method="POST">
+                <div class="form-group">
+                    <label>Nombre</label>
+                    <input type="text" name="name" required>
+                </div>
+                <div class="form-group">
+                    <label>Email</label>
+                    <input type="email" name="email" required>
+                </div>
+                <div class="form-group">
+                    <label>Mensaje</label>
+                    <textarea name="message" rows="5" required></textarea>
+                </div>
+                <button type="submit" class="btn-warm">Enviar Mensaje</button>
+            </form>
         </div>
     </section>
 
