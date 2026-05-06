@@ -3,8 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Artesanos de Chiloé</title>
-    <link href="arte.png" rel="stylesheet">
+    <title>Artesanos de Ancud | Tradición y Patrimonio</title>
+    <!-- Tipografías -->
+    <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,700;1,400&family=Montserrat:wght@300;500;700&display=swap" rel="stylesheet">
     <style>
         :root {
             --hueso: #F9F7F2;
@@ -12,177 +13,287 @@
             --tierra: #D4A373;
             --texto: #4A443F;
             --blanco: #ffffff;
+            --shadow: 0 4px 12px rgba(0,0,0,0.08);
         }
 
         * { margin: 0; padding: 0; box-sizing: border-box; }
-        body { font-family: 'Montserrat', sans-serif; background-color: var(--hueso); color: var(--texto); overflow-x: hidden; }
 
-        /* HEADER & NAV */
+        body {
+            font-family: 'Montserrat', sans-serif;
+            background-color: var(--hueso);
+            color: var(--texto);
+            line-height: 1.6;
+            scroll-behavior: smooth;
+            overflow-x: hidden;
+        }
+
+        h1, h2, h3 { font-family: 'Lora', serif; color: var(--madera); }
+
+        /* --- NAVEGACIÓN MEJORADA --- */
         .navbar {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 15px 5%;
-            background: var(--hueso);
+            padding: 0 5%;
+            height: 80px;
+            background-color: rgba(249, 247, 242, 0.98);
             position: sticky;
             top: 0;
             z-index: 2000;
-            border-bottom: 1px solid #ddd;
+            border-bottom: 1px solid #E5DED1;
+            box-shadow: var(--shadow);
         }
 
-        .logo-container { display: flex; align-items: center; text-decoration: none; color: var(--madera); font-weight: 700; }
-        .logo-img { height: 40px; margin-right: 10px; }
+        .logo-container {
+            display: flex;
+            align-items: center;
+            text-decoration: none;
+            color: var(--madera);
+            z-index: 2001;
+        }
 
-        /* Menú Desktop */
-        .nav-menu { display: flex; list-style: none; align-items: center; }
-        .nav-item { margin-left: 25px; }
-        .nav-link { text-decoration: none; color: var(--madera); font-weight: 600; font-size: 0.9rem; }
+        .logo-img { height: 50px; margin-right: 12px; }
 
-        /* Botón Hamburguesa (Oculto en PC) */
-        .hamburger { display: none; cursor: pointer; flex-direction: column; gap: 5px; }
-        .hamburger span { width: 25px; height: 3px; background: var(--madera); border-radius: 2px; transition: 0.3s; }
+        .nav-links { display: flex; list-style: none; align-items: center; }
+        .nav-links li { margin-left: 25px; position: relative; }
+        .nav-links a { text-decoration: none; color: var(--madera); font-weight: 600; font-size: 0.9rem; transition: 0.3s; }
+        .nav-links a:hover { color: var(--tierra); }
 
-        /* HERO SECTION */
+        /* Dropdown Estilizado */
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            background: var(--blanco);
+            min-width: 180px;
+            top: 100%;
+            left: 0;
+            box-shadow: var(--shadow);
+            border-radius: 4px;
+            padding: 10px 0;
+        }
+        .dropdown-content a { padding: 10px 20px; display: block; }
+        .dropdown:hover .dropdown-content { display: block; }
+
+        /* Menu Hamburguesa */
+        .hamburger { display: none; cursor: pointer; flex-direction: column; gap: 5px; z-index: 2001; }
+        .hamburger span { width: 28px; height: 3px; background: var(--madera); border-radius: 2px; transition: 0.3s; }
+
+        /* --- HERO --- */
         .hero {
-            height: 70vh;
-            background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('1590699515320501911.jpeg');
+            height: 80vh;
+            background: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), url('1590699515320501911.jpeg');
             background-size: cover;
             background-position: center;
             display: flex;
-            flex-direction: column;
             justify-content: center;
             align-items: center;
             text-align: center;
+            color: var(--blanco);
+        }
+        .hero-content h1 { font-size: clamp(2.2rem, 6vw, 3.8rem); color: var(--blanco); margin-bottom: 20px; }
+        .hero-content p { font-size: 1.2rem; margin-bottom: 30px; font-weight: 300; }
+
+        .btn-warm {
+            display: inline-block;
+            padding: 15px 40px;
+            background-color: var(--tierra);
             color: white;
-            padding: 20px;
+            text-decoration: none;
+            border-radius: 50px; /* Más moderno */
+            font-weight: 700;
+            transition: 0.3s;
+            border: none;
+            cursor: pointer;
+            box-shadow: 0 4px 15px rgba(212, 163, 115, 0.4);
         }
-        .hero h1 { font-family: 'Lora', serif; font-size: clamp(2rem, 8vw, 3.5rem); margin-bottom: 1rem; }
+        .btn-warm:hover { background-color: var(--madera); transform: translateY(-2px); }
 
-        /* GRID RESPONSIVO */
-        .container { padding: 60px 5%; max-width: 1200px; margin: auto; }
-        .grid { 
-            display: grid; 
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); 
-            gap: 30px; 
-            margin-top: 40px;
+        /* --- SECCIONES --- */
+        section { padding: 80px 5%; text-align: center; }
+        h2 { font-size: 2.2rem; margin-bottom: 15px; }
+        .section-subtitle { max-width: 700px; margin: 0 auto 40px; color: #777; }
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
         }
 
-        .card { background: white; padding: 30px; border-radius: 12px; box-shadow: 0 5px 15px rgba(0,0,0,0.05); text-align: center; }
-        .card img { width: 100%; height: 250px; object-fit: cover; border-radius: 8px; margin-bottom: 15px; }
+        .info-card {
+            padding: 40px;
+            background: var(--blanco);
+            border-radius: 12px;
+            box-shadow: var(--shadow);
+            transition: 0.3s;
+        }
+        .info-card:hover { transform: translateY(-5px); }
 
-        /* CONTACTO */
-        .contact-box { background: white; padding: 30px; border-radius: 12px; max-width: 600px; margin: 40px auto; text-align: left; }
-        input, textarea { width: 100%; padding: 12px; margin: 10px 0; border: 1px solid #ddd; border-radius: 6px; }
-        .btn { background: var(--tierra); color: white; border: none; padding: 15px; width: 100%; border-radius: 6px; font-weight: 700; cursor: pointer; }
+        .gallery-item {
+            border-radius: 12px;
+            overflow: hidden;
+            background: var(--blanco);
+            box-shadow: var(--shadow);
+        }
+        .gallery-item img { width: 100%; height: 350px; object-fit: cover; transition: 0.5s; }
+        .gallery-item:hover img { transform: scale(1.05); }
+        .gallery-item p { padding: 20px; font-style: italic; font-weight: 500; }
 
-        /* --- MEDIA QUERIES (MÓVIL) --- */
-        @media (max-width: 768px) {
-            .hamburger { display: flex; } /* Mostramos las rayitas */
+        /* --- CONTACTO --- */
+        .contact-container {
+            max-width: 600px;
+            margin: 0 auto;
+            background: var(--blanco);
+            padding: 40px;
+            border-radius: 12px;
+            box-shadow: var(--shadow);
+            text-align: left;
+        }
+        .form-group { margin-bottom: 20px; }
+        .form-group label { display: block; margin-bottom: 8px; font-weight: 600; font-size: 0.9rem; }
+        .form-group input, .form-group textarea {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            font-family: inherit;
+            outline-color: var(--tierra);
+        }
 
-            .nav-menu {
+        footer { background: var(--madera); color: var(--hueso); padding: 50px 5%; text-align: center; }
+        footer p:first-child { font-weight: 700; margin-bottom: 10px; }
+
+        /* --- RESPONSIVE --- */
+        @media (max-width: 992px) {
+            .hamburger { display: flex; }
+            .nav-links {
                 position: fixed;
-                left: -100%; /* Escondido a la izquierda */
-                top: 70px;
-                flex-direction: column;
-                background: var(--hueso);
+                top: 80px;
+                left: -100%;
                 width: 100%;
-                text-align: center;
-                transition: 0.3s;
-                box-shadow: 0 10px 15px rgba(0,0,0,0.1);
-                padding: 40px 0;
+                height: calc(100vh - 80px);
+                background: var(--hueso);
+                flex-direction: column;
+                padding-top: 50px;
+                transition: 0.4s;
             }
-
-            .nav-menu.active { left: 0; } /* Se desliza al centro */
-            .nav-item { margin: 20px 0; }
-            
-            .grid { grid-template-columns: 1fr; } /* Una sola columna en móvil */
-            .hero { height: 50vh; }
+            .nav-links.active { left: 0; }
+            .nav-links li { margin: 20px 0; }
+            .dropdown-content { position: static; box-shadow: none; background: transparent; text-align: center; }
         }
     </style>
 </head>
 <body>
 
-    <header class="navbar">
-        <a href="#" class="logo-container">
-            <img src="logo.png" alt="Logo" class="logo-img">
-            <span>ARTESANOS ANCUD</span>
-        </a>
+<header class="navbar">
+    <a href="#inicio" class="logo-container">
+        <img src="tu-logo.png" alt="Logo" class="logo-img">
+        <strong>ARTESANOS DE ANCUD</strong>
+    </a>
+    
+    <div class="hamburger" id="hamburger">
+        <span></span><span></span><span></span>
+    </div>
 
-        <div class="hamburger" id="hamburger">
-            <span></span>
-            <span></span>
-            <span></span>
-        </div>
-
-        <ul class="nav-menu" id="nav-menu">
-            <li class="nav-item"><a href="#inicio" class="nav-link">Inicio</a></li>
-            <li class="nav-item"><a href="#nosotros" class="nav-link">Nosotros</a></li>
-            <li class="nav-item"><a href="#artesanas" class="nav-link">Oficios</a></li>
-            <li class="nav-item"><a href="#contacto" class="nav-link">Contacto</a></li>
+    <nav>
+        <ul class="nav-links" id="nav-links">
+            <li><a href="#inicio">Inicio</a></li>
+            <li class="dropdown">
+                <a href="#artesanas">Artesanas ▼</a>
+                <div class="dropdown-content">
+                    <a href="#nosotros">Nuestra Misión</a>
+                    <a href="#artesanas">Ver Oficios</a>
+                </div>
+            </li>
+            <li><a href="#contacto">Contacto</a></li>
         </ul>
-    </header>
+    </nav>
+</header>
 
-    <section id="inicio" class="hero">
+<section id="inicio" class="hero">
+    <div class="hero-content">
         <h1>Tradición y Patrimonio</h1>
-        <p>III Muestra Provincial de Artesanos de Chiloé</p>
-    </section>
+        <p>Descubre el alma de Chiloé en cada tejido y tallado.</p>
+        <a href="#artesanas" class="btn-warm">Ver el Oficio</a>
+    </div>
+</section>
 
-    <section class="container" id="nosotros">
-        <h2 style="text-align: center; font-family: 'Lora';">Nuestra Identidad</h2>
-        <div class="grid">
-            <div class="card">
-                <h3>Misión</h3>
-                <p>Preservar la cultura y el oficio ancestral de nuestra provincia.</p>
-            </div>
-            <div class="card">
-                <h3>Visión</h3>
-                <p>Llevar la artesanía de Ancud a nuevos horizontes digitales.</p>
-            </div>
+<section id="nosotros">
+    <h2>Nuestra Identidad</h2>
+    <p class="section-subtitle">Valores que guían nuestra agrupación y protegen nuestra historia.</p>
+    <div class="grid">
+        <div class="info-card">
+            <h3>Misión</h3>
+            <p>Promover y poner en valor el patrimonio cultural de los artesanos de la Provincia de Chiloé, visibilizando sus oficios y tradiciones locales.</p>
         </div>
-    </section>
-
-    <section class="container" id="artesanas">
-        <h2 style="text-align: center; font-family: 'Lora';">Galería de Oficios</h2>
-        <div class="grid">
-            <div class="card">
-                <img src="foto1.jpg" alt="Artesanía">
-                <p>Tejido en Lana Natural</p>
-            </div>
-            <div class="card">
-                <img src="foto2.jpg" alt="Madera">
-                <p>Tallado en Madera Nativa</p>
-            </div>
+        <div class="info-card">
+            <h3>Visión</h3>
+            <p>Ser el referente digital de la artesanía chilota, asegurando la preservación del conocimiento artesanal para las futuras generaciones.</p>
         </div>
-    </section>
+    </div>
+</section>
 
-    <section class="container" id="contacto" style="background: #eee;">
-        <div class="contact-box">
-            <h2 style="margin-bottom: 20px;">Contacto</h2>
-            <form action="https://formspree.io/f/tu-id" method="POST">
-                <input type="text" name="name" placeholder="Tu Nombre" required>
-                <input type="email" name="email" placeholder="Tu Email" required>
-                <textarea name="message" rows="4" placeholder="¿Cómo podemos ayudarte?" required></textarea>
-                <button type="submit" class="btn">ENVIAR MENSAJE</button>
-            </form>
+<section id="artesanas">
+    <h2>Manos que Crean</h2>
+    <p class="section-subtitle">El calor de la lana de oveja y el aroma de la madera nativa de nuestra isla.</p>
+    <div class="grid">
+        <div class="gallery-item">
+            <img src="foto1.jpg" alt="Telar de Quelgo">
+            <p>El arte del telar de quelgo.</p>
         </div>
-    </section>
+        <div class="gallery-item">
+            <img src="foto2.jpg" alt="Lana Natural">
+            <p>Lana de oveja teñida naturalmente.</p>
+        </div>
+        <div class="gallery-item">
+            <img src="foto3.jpg" alt="Maderas Nativas">
+            <p>Tallado en maderas nativas.</p>
+        </div>
+    </div>
+</section>
 
-    <!-- SCRIPT PARA EL MENÚ MÓVIL -->
-    <script>
-        const hamburger = document.getElementById('hamburger');
-        const navMenu = document.getElementById('nav-menu');
+<section id="contacto" style="background: #f2ede4;">
+    <h2>Contacto</h2>
+    <p class="section-subtitle">¿Tienes consultas sobre la muestra? Escríbenos.</p>
+    <div class="contact-container">
+        <form action="https://formspree.io/f/tu-id" method="POST">
+            <div class="form-group">
+                <label>Nombre Completo</label>
+                <input type="text" name="name" placeholder="Ej: Juan Pérez" required>
+            </div>
+            <div class="form-group">
+                <label>Correo Electrónico</label>
+                <input type="email" name="email" placeholder="nombre@correo.com" required>
+            </div>
+            <div class="form-group">
+                <label>Mensaje</label>
+                <textarea name="message" rows="5" placeholder="¿En qué podemos ayudarte?" required></textarea>
+            </div>
+            <button type="submit" class="btn-warm" style="width: 100%;">Enviar Mensaje</button>
+        </form>
+    </div>
+</section>
 
-        hamburger.addEventListener('click', () => {
-            navMenu.classList.toggle('active');
-            // Animación simple de las rayitas (opcional)
-            hamburger.classList.toggle('is-active');
+<footer>
+    <p>&copy; 2026 Agrupación de Artesanos y Oficios de Ancud</p>
+    <p>Diseñado por Sebastián Reyes Caimapo</p>
+</footer>
+
+<script>
+    const hamburger = document.getElementById('hamburger');
+    const navLinks = document.getElementById('nav-links');
+
+    hamburger.addEventListener('click', () => {
+        navLinks.classList.toggle('active');
+        hamburger.classList.toggle('active');
+    });
+
+    // Cerrar menú al hacer click en un link
+    document.querySelectorAll('.nav-links a').forEach(link => {
+        link.addEventListener('click', () => {
+            navLinks.classList.remove('active');
         });
-
-        // Cerrar el menú cuando se hace clic en un enlace
-        document.querySelectorAll('.nav-link').forEach(n => n.addEventListener('click', () => {
-            navMenu.classList.remove('active');
-        }));
-    </script>
+    });
+</script>
 
 </body>
 </html>
