@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Noticias | Artesanos de Ancud</title>
+    <link rel="icon" type="image/png" href="https://drive.google.com/thumbnail?id=17zcF4Qc9yRwIVoauzdQVPPr6f3JUfLmI&sz=w32">
+    <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,700;1,400&family=Montserrat:wght@300;500;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --hueso: #F9F7F2; --madera: #5D4037; --tierra: #D4A373; --texto: #4A443F; --blanco: #ffffff; --shadow: 0 4px 12px rgba(0,0,0,0.08);
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        
+        /* Estructura para Footer al fondo */
+        html, body { height: 100%; display: flex; flex-direction: column; }
+        body { font-family: 'Montserrat', sans-serif; background-color: var(--hueso); color: var(--texto); line-height: 1.6; }
+        main { flex: 1; }
+
+        h1, h2, h3 { font-family: 'Lora', serif; color: var(--madera); }
+        
+        /* Navegación */
+        .navbar { display: flex; justify-content: space-between; align-items: center; padding: 0 5%; height: 80px; background-color: rgba(249, 247, 242, 0.98); position: sticky; top: 0; z-index: 2000; border-bottom: 1px solid #E5DED1; box-shadow: var(--shadow); }
+        .logo-container { display: flex; align-items: center; text-decoration: none; color: var(--madera); }
+        .logo-img { height: 60px; width: auto; margin-right: 12px; }
+        .nav-links { display: flex; list-style: none; align-items: center; }
+        .nav-links li { margin-left: 25px; }
+        .nav-links a { text-decoration: none; color: var(--madera); font-weight: 600; transition: 0.3s; }
+        .nav-links a:hover { color: var(--tierra); }
+
+        /* Contenido de Noticias */
+        .news-header { padding: 60px 5%; text-align: center; background: #f2ede4; }
+        .news-container { max-width: 900px; margin: 40px auto; padding: 0 5%; }
+
+        .news-card { 
+            background: var(--blanco); 
+            border-radius: 12px; 
+            overflow: hidden; 
+            margin-bottom: 30px; 
+            display: flex; 
+            box-shadow: var(--shadow);
+            transition: 0.3s;
+        }
+        .news-card:hover { transform: translateY(-5px); }
+        .news-image { width: 35%; min-height: 200px; background-color: #ddd; }
+        .news-image img { width: 100%; height: 100%; object-fit: cover; }
+        
+        .news-content { padding: 30px; width: 65%; }
+        .news-date { color: var(--tierra); font-weight: 700; font-size: 0.8rem; text-transform: uppercase; margin-bottom: 10px; display: block; }
+        .news-content h2 { margin-bottom: 15px; font-size: 1.6rem; }
+        .news-content p { color: #666; margin-bottom: 20px; }
+
+        .btn-small { text-decoration: none; color: var(--tierra); font-weight: 700; border-bottom: 2px solid var(--tierra); padding-bottom: 2px; transition: 0.3s; }
+        .btn-small:hover { color: var(--madera); border-color: var(--madera); }
+
+        footer { background: var(--madera); color: var(--hueso); padding: 30px 5%; text-align: center; }
+
+        /* Mobile */
+        @media (max-width: 768px) {
+            .news-card { flex-direction: column; }
+            .news-image, .news-content { width: 100%; }
+            .navbar { padding: 0 20px; }
+            .nav-links { display: none; } /* Aquí podrías reusar tu menú hamburguesa */
+        }
+    </style>
+</head>
+<body>
+
+<header class="navbar">
+    <a href="index.html" class="logo-container">
+        <img src="https://drive.google.com/thumbnail?id=17zcF4Qc9yRwIVoauzdQVPPr6f3JUfLmI&sz=w500" alt="Logo" class="logo-img">
+        <strong>ARTESANOS DE ANCUD</strong>
+    </a>
+    <nav>
+        <ul class="nav-links">
+            <li><a href="index.html">Inicio</a></li>
+            <li><a href="artesanos.html">Artesanos</a></li>
+            <li><a href="noticias.html" style="color: var(--tierra);">Noticias</a></li>
+            <li><a href="contacto.html">Contacto</a></li>
+        </ul>
+    </nav>
+</header>
+
+<main>
+    <div class="news-header">
+        <h1>Actualidad y Eventos</h1>
+        <p>Sigue el camino hacia la III Muestra Provincial de Artesanía.</p>
+    </div>
+
+    <div class="news-container">
+        
+        <article class="news-card">
+            <div class="news-image">
+                <img src="noticia1.jpg" alt="Reunión Agrupación">
+            </div>
+            <div class="news-content">
+                <span class="news-date">06 Mayo, 2026</span>
+                <h2>Preparativos para la III Muestra Provincial</h2>
+                <p>Nuestra agrupación se reunió en Ancud para coordinar los espacios de exhibición y los talleres en vivo que tendremos en junio.</p>
+                <a href="#" class="btn-small">Leer más →</a>
+            </div>
+        </article>
+
+        <article class="news-card">
+            <div class="news-image">
+                <img src="noticia2.jpg" alt="Taller de lana">
+            </div>
+            <div class="news-content">
+                <span class="news-date">28 Abril, 2026</span>
+                <h2>Nuevos socios se integran a la red</h2>
+                <p>Damos la bienvenida a tres maestras tejedoras de la zona de Quetalmahue, quienes traerán sus técnicas de teñido natural.</p>
+                <a href="#" class="btn-small">Leer más →</a>
+            </div>
+        </article>
+
+    </div>
+</main>
+
+<footer>
+    <p><strong>© 2026 Agrupación de Artesanos y Oficios de Ancud</strong></p>
+    <p style="font-size: 0.8rem; margin-top: 5px;">Diseñado por Sebastián Reyes Caimapo</p>
+</footer>
+
+</body>
+</html>
