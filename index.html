@@ -29,7 +29,7 @@
 
         h1, h2, h3 { font-family: 'Lora', serif; color: var(--madera); }
 
-        /* --- NAVEGACIÓN MEJORADA --- */
+        /* --- NAVEGACIÓN --- */
         .navbar {
             display: flex;
             justify-content: space-between;
@@ -52,14 +52,14 @@
             z-index: 2001;
         }
 
-        .logo-img { height: 50px; margin-right: 12px; }
+        .logo-img { height: 55px; margin-right: 12px; border-radius: 4px; }
 
         .nav-links { display: flex; list-style: none; align-items: center; }
         .nav-links li { margin-left: 25px; position: relative; }
         .nav-links a { text-decoration: none; color: var(--madera); font-weight: 600; font-size: 0.9rem; transition: 0.3s; }
         .nav-links a:hover { color: var(--tierra); }
 
-        /* Dropdown Estilizado */
+        /* Dropdown */
         .dropdown-content {
             display: none;
             position: absolute;
@@ -80,8 +80,8 @@
 
         /* --- HERO --- */
         .hero {
-            height: 80vh;
-            background: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), url('1590699515320501911.jpeg');
+            height: 85vh;
+            background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('1590699515320501911.jpeg');
             background-size: cover;
             background-position: center;
             display: flex;
@@ -90,8 +90,10 @@
             text-align: center;
             color: var(--blanco);
         }
-        .hero-content h1 { font-size: clamp(2.2rem, 6vw, 3.8rem); color: var(--blanco); margin-bottom: 20px; }
-        .hero-content p { font-size: 1.2rem; margin-bottom: 30px; font-weight: 300; }
+        .hero-content { display: flex; flex-direction: column; align-items: center; }
+        .hero-logo { height: 160px; width: auto; margin-bottom: 25px; filter: drop-shadow(0 4px 8px rgba(0,0,0,0.3)); }
+        .hero-content h1 { font-size: clamp(2.2rem, 6vw, 3.8rem); color: var(--blanco); margin-bottom: 15px; }
+        .hero-content p { font-size: 1.2rem; margin-bottom: 30px; font-weight: 300; max-width: 600px; }
 
         .btn-warm {
             display: inline-block;
@@ -99,7 +101,7 @@
             background-color: var(--tierra);
             color: white;
             text-decoration: none;
-            border-radius: 50px; /* Más moderno */
+            border-radius: 50px;
             font-weight: 700;
             transition: 0.3s;
             border: none;
@@ -179,6 +181,7 @@
             .nav-links.active { left: 0; }
             .nav-links li { margin: 20px 0; }
             .dropdown-content { position: static; box-shadow: none; background: transparent; text-align: center; }
+            .hero-logo { height: 120px; }
         }
     </style>
 </head>
@@ -186,7 +189,8 @@
 
 <header class="navbar">
     <a href="#inicio" class="logo-container">
-        <img src="https://drive.google.com/file/d/17zcF4Qc9yRwIVoauzdQVPPr6f3JUfLmI/view?usp=sharing" alt="Logo" class="logo-img">
+        <!-- Logo en Navbar -->
+        <img src="https://lh3.googleusercontent.com/d/17zcF4Qc9yRwIVoauzdQVPPr6f3JUfLmI" alt="Logo Artesanos" class="logo-img">
         <strong>ARTESANOS DE ANCUD</strong>
     </a>
     
@@ -211,6 +215,8 @@
 
 <section id="inicio" class="hero">
     <div class="hero-content">
+        <!-- Logo en Sección Hero -->
+        <img src="https://lh3.googleusercontent.com/d/17zcF4Qc9yRwIVoauzdQVPPr6f3JUfLmI" alt="Logo Grande" class="hero-logo">
         <h1>Tradición y Patrimonio</h1>
         <p>Descubre el alma de Chiloé en cada tejido y tallado.</p>
         <a href="#artesanas" class="btn-warm">Ver el Oficio</a>
@@ -287,7 +293,6 @@
         hamburger.classList.toggle('active');
     });
 
-    // Cerrar menú al hacer click en un link
     document.querySelectorAll('.nav-links a').forEach(link => {
         link.addEventListener('click', () => {
             navLinks.classList.remove('active');
