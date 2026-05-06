@@ -19,31 +19,40 @@
             --shadow: 0 8px 20px rgba(0,0,0,0.05);
         }
 
-        /* Reset y Base */
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-        
+        /* Estructura Base para Footer al fondo */
+        html, body {
+            height: 100%;
+            margin: 0;
+            display: flex;
+            flex-direction: column;
+        }
+
         body {
             font-family: 'Montserrat', sans-serif;
             background-color: var(--hueso);
             color: var(--texto);
             line-height: 1.8;
-            overflow-x: hidden;
+        }
+
+        main {
+            flex: 1; /* Empuja el footer hacia abajo */
         }
 
         h1, h2, h3 { font-family: 'Lora', serif; color: var(--madera); }
 
-        /* --- NAVEGACIÓN ARTESANAL --- */
+        /* --- NAVEGACIÓN RECUPERADA --- */
         .navbar {
             display: flex;
             justify-content: space-between;
             align-items: center;
             padding: 0 5%;
-            height: 90px;
-            background-color: rgba(249, 247, 242, 0.95);
+            height: 85px;
+            background-color: rgba(249, 247, 242, 0.98);
             position: sticky;
             top: 0;
             z-index: 2000;
             border-bottom: 2px solid #E5DED1;
+            box-shadow: var(--shadow);
         }
 
         .logo-container {
@@ -51,28 +60,56 @@
             align-items: center;
             text-decoration: none;
             color: var(--madera);
+            z-index: 2001;
         }
 
-        .logo-img { height: 65px; margin-right: 15px; }
+        .logo-img { height: 60px; margin-right: 12px; }
         .logo-container strong { font-size: 1.1rem; letter-spacing: 1px; }
 
         .nav-links { display: flex; list-style: none; align-items: center; }
-        .nav-links li { margin-left: 30px; }
+        .nav-links li { margin-left: 25px; position: relative; }
         .nav-links a { 
             text-decoration: none; 
             color: var(--madera); 
             font-weight: 600; 
             font-size: 0.9rem; 
+            transition: 0.3s; 
             text-transform: uppercase;
-            transition: 0.3s;
         }
         .nav-links a:hover { color: var(--tierra); }
 
-        /* --- HERO SECCIÓN (EL ALMA) --- */
+        /* Dropdown Estilizado */
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            background: var(--blanco);
+            min-width: 200px;
+            top: 100%;
+            left: 0;
+            box-shadow: var(--shadow);
+            border-radius: 4px;
+            padding: 10px 0;
+            border-top: 3px solid var(--tierra);
+        }
+        .dropdown-content a { 
+            padding: 10px 20px; 
+            display: block; 
+            text-transform: none; 
+            font-size: 0.85rem;
+            color: var(--texto);
+        }
+        .dropdown-content a:hover { background-color: var(--hueso); color: var(--tierra); }
+        .dropdown:hover .dropdown-content { display: block; }
+
+        /* Menu Hamburguesa */
+        .hamburger { display: none; cursor: pointer; flex-direction: column; gap: 5px; z-index: 2001; }
+        .hamburger span { width: 28px; height: 3px; background: var(--madera); border-radius: 2px; transition: 0.3s; }
+
+        /* --- HERO SECCIÓN --- */
         .hero {
-            height: 90vh;
-            background: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), 
-                        url('https://images.unsplash.com/photo-1528813122114-16a7f050b16a?auto=format&fit=crop&q=80'); /* Imagen de madera/textura */
+            height: 80vh;
+            background: linear-gradient(rgba(0,0,0,0.45), rgba(0,0,0,0.45)), 
+                        url('https://images.unsplash.com/photo-1528813122114-16a7f050b16a?auto=format&fit=crop&q=80');
             background-size: cover;
             background-position: center;
             display: flex;
@@ -84,18 +121,8 @@
         }
 
         .hero-content { max-width: 800px; padding: 20px; }
-        .hero-content h1 { 
-            font-size: clamp(2.5rem, 8vw, 4.5rem); 
-            color: var(--blanco); 
-            margin-bottom: 10px;
-            font-style: italic;
-        }
-        .hero-content p { 
-            font-size: 1.3rem; 
-            margin-bottom: 35px; 
-            font-weight: 300;
-            letter-spacing: 1px;
-        }
+        .hero-content h1 { font-size: clamp(2.5rem, 8vw, 4.5rem); color: var(--blanco); margin-bottom: 10px; font-style: italic; }
+        .hero-content p { font-size: 1.3rem; margin-bottom: 35px; font-weight: 300; letter-spacing: 1px; }
 
         .btn-artesanal {
             display: inline-block;
@@ -109,26 +136,17 @@
             transition: 0.4s;
             border: 2px solid transparent;
         }
-        .btn-artesanal:hover { 
-            background-color: transparent; 
-            border-color: white;
-            transform: translateY(-3px);
-        }
+        .btn-artesanal:hover { background-color: transparent; border-color: white; transform: translateY(-3px); }
 
-        /* --- SECCIÓN IDENTIDAD --- */
+        /* --- SECCIÓN CONTENIDO --- */
         .intro-section {
-            padding: 100px 10%;
+            padding: 80px 10%;
             text-align: center;
             background-image: radial-gradient(#d4a37322 1px, transparent 1px);
-            background-size: 30px 30px; /* Trama sutil */
+            background-size: 30px 30px;
         }
 
-        .ornamento { 
-            width: 80px; 
-            height: 3px; 
-            background: var(--tierra); 
-            margin: 20px auto; 
-        }
+        .ornamento { width: 80px; height: 3px; background: var(--tierra); margin: 20px auto; }
 
         .grid-identidad {
             display: grid;
@@ -144,28 +162,35 @@
             transition: 0.3s;
         }
         .card-identidad:hover { border-color: var(--tierra); box-shadow: var(--shadow); }
-        .card-identidad h3 { margin-bottom: 20px; font-size: 1.8rem; }
 
-        /* --- FOOTER PATRIMONIAL --- */
+        /* --- FOOTER --- */
         footer {
             background: var(--madera);
             color: var(--hueso);
-            padding: 60px 5% 30px;
+            padding: 50px 5% 30px;
             text-align: center;
-            margin-top: auto;
         }
 
-        .footer-line {
-            width: 100%;
-            height: 1px;
-            background: rgba(255,255,255,0.1);
-            margin: 30px 0;
-        }
+        .footer-line { width: 100%; height: 1px; background: rgba(255,255,255,0.1); margin: 25px 0; }
 
-        /* Responsive */
-        @media (max-width: 768px) {
-            .nav-links { display: none; }
-            .hero { height: 70vh; }
+        /* --- RESPONSIVE --- */
+        @media (max-width: 992px) {
+            .hamburger { display: flex; }
+            .nav-links {
+                position: fixed;
+                top: 0;
+                left: -100%;
+                width: 80%;
+                height: 100vh;
+                background: var(--hueso);
+                flex-direction: column;
+                padding-top: 100px;
+                transition: 0.4s;
+                box-shadow: 10px 0 30px rgba(0,0,0,0.1);
+            }
+            .nav-links.active { left: 0; }
+            .nav-links li { margin: 20px 0; width: 100%; text-align: center; }
+            .dropdown-content { position: static; box-shadow: none; background: transparent; display: block; border: none; }
         }
     </style>
 </head>
@@ -173,14 +198,24 @@
 
 <header class="navbar">
     <a href="index.html" class="logo-container">
-        <img src="https://drive.google.com/thumbnail?id=17zcF4Qc9yRwIVoauzdQVPPr6f3JUfLmI&sz=w500" alt="Logo Artesanos" class="logo-img">
+        <img src="https://drive.google.com/thumbnail?id=17zcF4Qc9yRwIVoauzdQVPPr6f3JUfLmI&sz=w500" alt="Logo" class="logo-img">
         <strong>ARTESANOS DE ANCUD</strong>
     </a>
     
+    <div class="hamburger" id="hamburger">
+        <span></span><span></span><span></span>
+    </div>
+
     <nav>
-        <ul class="nav-links">
+        <ul class="nav-links" id="nav-links">
             <li><a href="index.html" style="color: var(--tierra);">Inicio</a></li>
-            <li><a href="artesanos.html">Artesanos</a></li>
+            <li class="dropdown">
+                <a href="artesanos.html">Artesanos ▼</a>
+                <div class="dropdown-content">
+                    <a href="index.html#nosotros">Nuestra Misión</a>
+                    <a href="artesanos.html">Galería de Oficios</a>
+                </div>
+            </li>
             <li><a href="noticias.html">Noticias</a></li>
             <li><a href="contacto.html">Contacto</a></li>
         </ul>
@@ -197,7 +232,7 @@
         </div>
     </section>
 
-    <section class="intro-section">
+    <section id="nosotros" class="intro-section">
         <span style="text-transform: uppercase; letter-spacing: 3px; color: var(--tierra); font-weight: 700;">III Muestra Provincial</span>
         <h2>Nuestra Identidad</h2>
         <div class="ornamento"></div>
@@ -220,13 +255,34 @@
 
 <footer>
     <div style="max-width: 800px; margin: 0 auto;">
-        <h3 style="color: var(--hueso); margin-bottom: 15px;">Agrupación de Artesanos y Oficios de Ancud</h3>
-        <p>Preservando el alma de nuestra isla.</p>
+        <h3 style="color: var(--hueso); margin-bottom: 10px;">Agrupación de Artesanos y Oficios de Ancud</h3>
+        <p style="font-weight: 300;">Preservando el alma de nuestra isla.</p>
         <div class="footer-line"></div>
-        <p style="font-size: 0.9rem; opacity: 0.8;">&copy; 2026 - III Muestra Provincial de Artesanía</p>
-        <p style="font-size: 0.75rem; margin-top: 10px; opacity: 0.6;">Diseñado por Sebastián Reyes Caimapo</p>
+        <p style="font-size: 0.85rem; opacity: 0.8;">&copy; 2026 - III Muestra Provincial de Artesanía</p>
+        <p style="font-size: 0.7rem; margin-top: 8px; opacity: 0.5;">Diseñado por Sebastián Reyes Caimapo</p>
     </div>
 </footer>
+
+<script>
+    const hamburger = document.getElementById('hamburger');
+    const navLinks = document.getElementById('nav-links');
+
+    hamburger.addEventListener('click', () => {
+        navLinks.classList.toggle('active');
+        // Animación simple de la hamburguesa
+        const spans = hamburger.querySelectorAll('span');
+        spans[0].style.transform = navLinks.classList.contains('active') ? 'rotate(45deg) translate(5px, 5px)' : 'none';
+        spans[1].style.opacity = navLinks.classList.contains('active') ? '0' : '1';
+        spans[2].style.transform = navLinks.classList.contains('active') ? 'rotate(-45deg) translate(7px, -6px)' : 'none';
+    });
+
+    // Cerrar menú al hacer click en cualquier link (para móviles)
+    document.querySelectorAll('.nav-links a').forEach(link => {
+        link.addEventListener('click', () => {
+            navLinks.classList.remove('active');
+        });
+    });
+</script>
 
 </body>
 </html>
