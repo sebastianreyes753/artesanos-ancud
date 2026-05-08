@@ -3,73 +3,107 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Crónicas | Artesanos de Ancud</title>
+    <title>Noticias | Artesanos de Ancud</title>
+    
     <link rel="icon" type="image/png" href="https://drive.google.com/thumbnail?id=17zcF4Qc9yRwIVoauzdQVPPr6f3JUfLmI&sz=w32">
+
     <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,700;1,400&family=Montserrat:wght@300;500;700&display=swap" rel="stylesheet">
+    
     <style>
         :root {
-            --hueso: #F9F7F2; --madera: #5D4037; --tierra: #B5835A; --texto: #4A443F; --blanco: #ffffff; --shadow: 0 10px 30px rgba(0,0,0,0.05);
+            --hueso: #F9F7F2;
+            --madera: #5D4037;
+            --tierra: #B5835A;
+            --texto: #4A443F;
+            --blanco: #ffffff;
+            --shadow: 0 8px 20px rgba(0,0,0,0.05);
         }
-        
+
+        /* Estructura para Footer al fondo */
         html, body { height: 100%; margin: 0; display: flex; flex-direction: column; }
         body { font-family: 'Montserrat', sans-serif; background-color: var(--hueso); color: var(--texto); line-height: 1.8; }
         main { flex: 1; }
 
         h1, h2, h3 { font-family: 'Lora', serif; color: var(--madera); }
-        
-        /* Navegación */
-        .navbar { display: flex; justify-content: space-between; align-items: center; padding: 0 5%; height: 85px; background-color: rgba(249, 247, 242, 0.98); position: sticky; top: 0; z-index: 2000; border-bottom: 2px solid #E5DED1; }
-        .logo-container { display: flex; align-items: center; text-decoration: none; color: var(--madera); }
-        .logo-nav-img { height: 60px; margin-right: 12px; }
-        .nav-links { display: flex; list-style: none; }
-        .nav-links li { margin-left: 25px; }
-        .nav-links a { text-decoration: none; color: var(--madera); font-weight: 600; font-size: 0.9rem; text-transform: uppercase; }
 
-        /* Estilo Noticias */
+        /* --- NAVEGACIÓN --- */
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 5%;
+            height: 85px;
+            background-color: rgba(249, 247, 242, 0.98);
+            position: sticky;
+            top: 0;
+            z-index: 2000;
+            border-bottom: 2px solid #E5DED1;
+        }
+
+        .logo-container { display: flex; align-items: center; text-decoration: none; color: var(--madera); }
+        .logo-img { height: 60px; margin-right: 12px; }
+
+        .nav-links { display: flex; list-style: none; align-items: center; }
+        .nav-links li { margin-left: 25px; position: relative; }
+        .nav-links a { 
+            text-decoration: none; color: var(--madera); font-weight: 600; 
+            font-size: 0.9rem; text-transform: uppercase; transition: 0.3s;
+        }
+        .nav-links a:hover { color: var(--tierra); }
+
+        /* --- CONTENIDO NOTICIAS --- */
         .news-header { padding: 60px 5%; text-align: center; }
+        .ornamento { width: 60px; height: 3px; background: var(--tierra); margin: 15px auto; }
+
         .news-feed { max-width: 900px; margin: 0 auto 80px; padding: 0 5%; }
 
         .news-card { 
             background: var(--blanco); border-radius: 8px; overflow: hidden; 
-            margin-bottom: 40px; border: 1px solid #E5DED1; box-shadow: var(--shadow);
-            transition: 0.3s; cursor: pointer;
+            margin-bottom: 35px; border: 1px solid #E5DED1; box-shadow: var(--shadow);
+            transition: 0.3s; cursor: pointer; display: flex; align-items: center;
         }
-        .news-card:hover { transform: translateY(-5px); border-color: var(--tierra); }
+        .news-card:hover { transform: translateY(-3px); border-color: var(--tierra); }
         
-        .news-info { padding: 30px; }
+        .news-info { padding: 30px; flex: 1; }
         .news-tag { color: var(--tierra); font-weight: 700; font-size: 0.7rem; letter-spacing: 2px; }
+        .news-card h3 { margin: 10px 0; }
 
-        /* --- SISTEMA DE MODALES (VENTANAS) --- */
+        /* --- MODALES (VENTANAS EMERGENTES) --- */
         .modal {
             display: none; position: fixed; z-index: 3000; left: 0; top: 0;
-            width: 100%; height: 100%; background-color: rgba(93, 64, 55, 0.9); /* Fondo café oscuro */
-            backdrop-filter: blur(5px);
+            width: 100%; height: 100%; background-color: rgba(93, 64, 55, 0.85);
+            backdrop-filter: blur(4px);
         }
 
         .modal-content {
-            background-color: var(--hueso); margin: 5% auto; padding: 40px;
-            width: 90%; max-width: 700px; border-radius: 15px; position: relative;
-            max-height: 80vh; overflow-y: auto; box-shadow: 0 20px 50px rgba(0,0,0,0.3);
+            background-color: var(--hueso); margin: 5vh auto; padding: 40px;
+            width: 90%; max-width: 800px; border-radius: 12px; position: relative;
+            max-height: 85vh; overflow-y: auto; box-shadow: 0 20px 40px rgba(0,0,0,0.2);
+            border-top: 6px solid var(--tierra);
         }
 
         .close-modal {
-            position: absolute; right: 20px; top: 15px; font-size: 30px;
-            cursor: pointer; color: var(--madera);
+            position: absolute; right: 25px; top: 15px; font-size: 35px;
+            cursor: pointer; color: var(--madera); font-weight: bold;
         }
 
-        .modal-body img { width: 100%; height: auto; border-radius: 8px; margin-bottom: 20px; }
-        .modal-body h2 { margin-bottom: 20px; }
+        .modal-body img { width: 100%; border-radius: 8px; margin-bottom: 25px; }
 
-        footer { background: var(--madera); color: var(--hueso); padding: 40px; text-align: center; }
+        /* --- FOOTER --- */
+        footer { background: var(--madera); color: var(--hueso); padding: 40px 5%; text-align: center; }
 
-        @media (max-width: 768px) { .nav-links { display: none; } }
+        /* Responsive */
+        @media (max-width: 768px) {
+            .nav-links { display: none; }
+            .modal-content { padding: 20px; margin-top: 10vh; }
+        }
     </style>
 </head>
 <body>
 
 <header class="navbar">
     <a href="index.html" class="logo-container">
-        <img src="https://drive.google.com/thumbnail?id=17zcF4Qc9yRwIVoauzdQVPPr6f3JUfLmI&sz=w500" alt="Logo" class="logo-nav-img">
+        <img src="https://drive.google.com/thumbnail?id=17zcF4Qc9yRwIVoauzdQVPPr6f3JUfLmI&sz=w500" alt="Logo" class="logo-img">
         <strong>ARTESANOS DE ANCUD</strong>
     </a>
     <nav>
@@ -84,49 +118,52 @@
 
 <main>
     <div class="news-header">
-        <h1>Crónicas de la Agrupación</h1>
-        <p>Haz clic en una noticia para leer la historia completa.</p>
+        <span style="text-transform: uppercase; letter-spacing: 3px; color: var(--tierra); font-weight: 700;">Bitácora</span>
+        <h1>Crónicas del Oficio</h1>
+        <div class="ornamento"></div>
     </div>
 
     <section class="news-feed">
-        <div class="news-card" onclick="openModal('noticia1')">
+        <div class="news-card" onclick="openModal('modal1')">
             <div class="news-info">
                 <span class="news-tag">EVENTO • JUNIO 2026</span>
-                <h3>Lanzamiento de la III Muestra Provincial</h3>
-                <p>Un encuentro que reunirá a más de 50 artesanos de todo el archipiélago...</p>
-                <span style="color: var(--tierra); font-weight: 700; font-size: 0.8rem;">LEER MÁS +</span>
+                <h3>Lanzamiento III Muestra Provincial</h3>
+                <p>Descubre todo lo que tenemos preparado para este gran encuentro patrimonial en Ancud...</p>
+                <span style="color: var(--tierra); font-weight: 700; font-size: 0.8rem;">LEER HISTORIA +</span>
             </div>
         </div>
 
-        <div class="news-card" onclick="openModal('noticia2')">
+        <div class="news-card" onclick="openModal('modalWidget')" style="background-color: #fcfaf7;">
             <div class="news-info">
-                <span class="news-tag">OFICIO • MAYO 2026</span>
-                <h3>Taller de Cestería en Manilla</h3>
-                <p>Los secretos de la fibra vegetal compartidos por las maestras de Ancud...</p>
-                <span style="color: var(--tierra); font-weight: 700; font-size: 0.8rem;">LEER MÁS +</span>
+                <span class="news-tag">ACTUALIZACIONES EN VIVO</span>
+                <h3>Tablón de Noticias Automático</h3>
+                <p>Haz clic para ver las últimas fotos y novedades subidas directamente desde nuestros talleres.</p>
+                <span style="color: var(--tierra); font-weight: 700; font-size: 0.8rem;">ABRIR TABLÓN →</span>
             </div>
         </div>
     </section>
 </main>
 
-<div id="noticia1" class="modal">
+<div id="modal1" class="modal">
     <div class="modal-content">
-        <span class="close-modal" onclick="closeModal('noticia1')">&times;</span>
+        <span class="close-modal" onclick="closeModal('modal1')">&times;</span>
         <div class="modal-body">
             <img src="https://images.unsplash.com/photo-1590699515320-501911.jpeg" alt="Muestra">
-            <h2>Lanzamiento de la III Muestra Provincial</h2>
-            <p>Estamos muy orgullosos de anunciar que la III Muestra Provincial de Artesanía se llevará a cabo en la Plaza de Armas de Ancud. Este evento no es solo una feria, es un espacio de resistencia cultural donde la madera nativa, la lana de oveja y las fibras vegetales cobran vida.</p>
-            <p>Tendremos música en vivo, degustación de gastronomía local y demostraciones de oficio en tiempo real. ¡Te esperamos!</p>
+            <h2>Lanzamiento III Muestra Provincial</h2>
+            <p>La Agrupación de Artesanos de Ancud invita a toda la comunidad a participar de la inauguración de la III Muestra Provincial.</p>
+            <p>Contaremos con la presencia de maestros de diversas comunas de Chiloé, quienes exhibirán sus obras y compartirán sus procesos creativos en vivo.</p>
         </div>
     </div>
 </div>
 
-<div id="noticia2" class="modal">
-    <div class="modal-content">
-        <span class="close-modal" onclick="closeModal('noticia2')">&times;</span>
-        <div class="modal-body">
-            <h2>Taller de Cestería en Manilla</h2>
-            <p>El pasado fin de semana, la maestra artesana llevó a cabo un taller intensivo sobre la recolección y preparación de la manilla. Participantes de diversas edades aprendieron a tejer sus propios cestos, manteniendo viva una tradición que define la identidad costera de Ancud.</p>
+<div id="modalWidget" class="modal">
+    <div class="modal-content" style="max-width: 900px; height: 80vh;">
+        <span class="close-modal" onclick="closeModal('modalWidget')">&times;</span>
+        <div class="modal-body" style="height: 90%;">
+            <h2 style="text-align: center;">Últimas Novedades</h2>
+            <p style="text-align: center; font-size: 0.9rem; margin-bottom: 20px;">Actualizado desde el taller</p>
+            
+            <iframe src="AQUÍ_PEGA_TU_LINK_DE_PADLET" width="100%" height="100%" style="border:none; border-radius: 8px; min-height: 450px;"></iframe>
         </div>
     </div>
 </div>
@@ -142,15 +179,15 @@
 <script>
     function openModal(id) {
         document.getElementById(id).style.display = "block";
-        document.body.style.overflow = "hidden"; // Evita scroll atrás
+        document.body.style.overflow = "hidden"; 
     }
 
     function closeModal(id) {
         document.getElementById(id).style.display = "none";
-        document.body.style.overflow = "auto"; // Devuelve scroll
+        document.body.style.overflow = "auto";
     }
 
-    // Cerrar si hace clic fuera de la caja blanca
+    // Cerrar al hacer clic fuera
     window.onclick = function(event) {
         if (event.target.className === 'modal') {
             event.target.style.display = "none";
