@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Noticias y Bitácora | Artesanos de Ancud</title>
+    <title>Crónicas | Artesanos de Ancud</title>
     <link rel="icon" type="image/png" href="https://drive.google.com/thumbnail?id=17zcF4Qc9yRwIVoauzdQVPPr6f3JUfLmI&sz=w32">
     <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,700;1,400&family=Montserrat:wght@300;500;700&display=swap" rel="stylesheet">
     <style>
@@ -18,67 +18,51 @@
         h1, h2, h3 { font-family: 'Lora', serif; color: var(--madera); }
         
         /* Navegación */
-        .navbar { display: flex; justify-content: space-between; align-items: center; padding: 0 5%; height: 85px; background-color: rgba(249, 247, 242, 0.98); position: sticky; top: 0; z-index: 2000; border-bottom: 2px solid #E5DED1; box-shadow: var(--shadow); }
+        .navbar { display: flex; justify-content: space-between; align-items: center; padding: 0 5%; height: 85px; background-color: rgba(249, 247, 242, 0.98); position: sticky; top: 0; z-index: 2000; border-bottom: 2px solid #E5DED1; }
         .logo-container { display: flex; align-items: center; text-decoration: none; color: var(--madera); }
         .logo-nav-img { height: 60px; margin-right: 12px; }
-        .nav-links { display: flex; list-style: none; align-items: center; }
-        .nav-links li { margin-left: 25px; position: relative; }
-        .nav-links a { text-decoration: none; color: var(--madera); font-weight: 600; font-size: 0.9rem; text-transform: uppercase; transition: 0.3s; }
-        .nav-links a:hover { color: var(--tierra); }
+        .nav-links { display: flex; list-style: none; }
+        .nav-links li { margin-left: 25px; }
+        .nav-links a { text-decoration: none; color: var(--madera); font-weight: 600; font-size: 0.9rem; text-transform: uppercase; }
 
-        /* Cabecera de Noticias */
-        .news-header { padding: 80px 5% 40px; text-align: center; background-image: radial-gradient(#d4a37311 1px, transparent 1px); background-size: 20px 20px; }
-        .news-header h1 { font-size: 3rem; font-style: italic; margin-bottom: 15px; }
-        .ornamento { width: 60px; height: 3px; background: var(--tierra); margin: 20px auto; }
+        /* Estilo Noticias */
+        .news-header { padding: 60px 5%; text-align: center; }
+        .news-feed { max-width: 900px; margin: 0 auto 80px; padding: 0 5%; }
 
-        /* Contenedor de Noticias (Estilo Revista) */
-        .news-feed { max-width: 1000px; margin: 0 auto 100px; padding: 0 5%; }
-
-        .news-item { 
-            display: flex; 
-            background: var(--blanco); 
-            margin-bottom: 50px; 
-            border-radius: 4px; 
-            overflow: hidden; 
-            box-shadow: var(--shadow);
-            border: 1px solid #E5DED1;
-            transition: 0.4s;
+        .news-card { 
+            background: var(--blanco); border-radius: 8px; overflow: hidden; 
+            margin-bottom: 40px; border: 1px solid #E5DED1; box-shadow: var(--shadow);
+            transition: 0.3s; cursor: pointer;
         }
-        .news-item:hover { transform: translateY(-5px); border-color: var(--tierra); }
-
-        .news-img-box { width: 45%; overflow: hidden; position: relative; min-height: 300px; }
-        .news-img-box img { width: 100%; height: 100%; object-fit: cover; transition: 0.5s; }
-        .news-item:hover .news-img-box img { transform: scale(1.05); }
-
-        .news-text { width: 55%; padding: 40px; display: flex; flex-direction: column; justify-content: center; }
-        .news-tag { color: var(--tierra); font-weight: 700; font-size: 0.75rem; text-transform: uppercase; letter-spacing: 2px; margin-bottom: 10px; }
-        .news-text h2 { font-size: 1.8rem; margin-bottom: 15px; line-height: 1.2; }
-        .news-text p { color: #666; font-size: 0.95rem; margin-bottom: 25px; }
+        .news-card:hover { transform: translateY(-5px); border-color: var(--tierra); }
         
-        .read-more { 
-            text-decoration: none; 
-            color: var(--madera); 
-            font-weight: 700; 
-            font-size: 0.8rem; 
-            display: flex; 
-            align-items: center; 
-            gap: 10px;
-            text-transform: uppercase;
-        }
-        .read-more::after { content: ''; width: 30px; height: 1px; background: var(--tierra); transition: 0.3s; }
-        .read-more:hover::after { width: 50px; }
+        .news-info { padding: 30px; }
+        .news-tag { color: var(--tierra); font-weight: 700; font-size: 0.7rem; letter-spacing: 2px; }
 
-        /* Footer */
-        footer { background: var(--madera); color: var(--hueso); padding: 50px 5%; text-align: center; }
-        .footer-line { width: 100%; height: 1px; background: rgba(255,255,255,0.1); margin: 25px 0; }
-
-        /* Responsive */
-        @media (max-width: 850px) {
-            .news-item { flex-direction: column; }
-            .news-img-box, .news-text { width: 100%; }
-            .news-img-box { min-height: 250px; }
-            .nav-links { display: none; }
+        /* --- SISTEMA DE MODALES (VENTANAS) --- */
+        .modal {
+            display: none; position: fixed; z-index: 3000; left: 0; top: 0;
+            width: 100%; height: 100%; background-color: rgba(93, 64, 55, 0.9); /* Fondo café oscuro */
+            backdrop-filter: blur(5px);
         }
+
+        .modal-content {
+            background-color: var(--hueso); margin: 5% auto; padding: 40px;
+            width: 90%; max-width: 700px; border-radius: 15px; position: relative;
+            max-height: 80vh; overflow-y: auto; box-shadow: 0 20px 50px rgba(0,0,0,0.3);
+        }
+
+        .close-modal {
+            position: absolute; right: 20px; top: 15px; font-size: 30px;
+            cursor: pointer; color: var(--madera);
+        }
+
+        .modal-body img { width: 100%; height: auto; border-radius: 8px; margin-bottom: 20px; }
+        .modal-body h2 { margin-bottom: 20px; }
+
+        footer { background: var(--madera); color: var(--hueso); padding: 40px; text-align: center; }
+
+        @media (max-width: 768px) { .nav-links { display: none; } }
     </style>
 </head>
 <body>
@@ -100,39 +84,52 @@
 
 <main>
     <div class="news-header">
-        <h1>Crónicas del Oficio</h1>
-        <div class="ornamento"></div>
-        <p>Novedades, encuentros y la vida de nuestra agrupación en Chiloé.</p>
+        <h1>Crónicas de la Agrupación</h1>
+        <p>Haz clic en una noticia para leer la historia completa.</p>
     </div>
 
     <section class="news-feed">
-        
-        <article class="news-item">
-            <div class="news-img-box">
-                <img src="https://images.unsplash.com/photo-1590699515320-501911.jpeg" alt="Reunión">
+        <div class="news-card" onclick="openModal('noticia1')">
+            <div class="news-info">
+                <span class="news-tag">EVENTO • JUNIO 2026</span>
+                <h3>Lanzamiento de la III Muestra Provincial</h3>
+                <p>Un encuentro que reunirá a más de 50 artesanos de todo el archipiélago...</p>
+                <span style="color: var(--tierra); font-weight: 700; font-size: 0.8rem;">LEER MÁS +</span>
             </div>
-            <div class="news-text">
-                <span class="news-tag">Encuentro • Mayo 2026</span>
-                <h2>Camino a la III Muestra Provincial</h2>
-                <p>Nos reunimos para definir los últimos detalles de lo que será nuestra gran muestra en junio. Este año contaremos con invitados de toda la provincia y talleres abiertos al público.</p>
-                <a href="#" class="read-more">Ver detalles</a>
-            </div>
-        </article>
+        </div>
 
-        <article class="news-item">
-            <div class="news-img-box">
-                <img src="https://images.unsplash.com/photo-1544967919-053f8d2c9160?auto=format&fit=crop&q=80" alt="Lana">
+        <div class="news-card" onclick="openModal('noticia2')">
+            <div class="news-info">
+                <span class="news-tag">OFICIO • MAYO 2026</span>
+                <h3>Taller de Cestería en Manilla</h3>
+                <p>Los secretos de la fibra vegetal compartidos por las maestras de Ancud...</p>
+                <span style="color: var(--tierra); font-weight: 700; font-size: 0.8rem;">LEER MÁS +</span>
             </div>
-            <div class="news-text">
-                <span class="news-tag">Patrimonio • Abril 2026</span>
-                <h2>Rescatando el Teñido Natural</h2>
-                <p>Se realizó un exitoso taller de tintes naturales en Quetalmahue, donde compartimos secretos sobre el uso de raíces y cortezas locales para dar vida a la lana.</p>
-                <a href="#" class="read-more">Ver detalles</a>
-            </div>
-        </article>
-
+        </div>
     </section>
 </main>
+
+<div id="noticia1" class="modal">
+    <div class="modal-content">
+        <span class="close-modal" onclick="closeModal('noticia1')">&times;</span>
+        <div class="modal-body">
+            <img src="https://images.unsplash.com/photo-1590699515320-501911.jpeg" alt="Muestra">
+            <h2>Lanzamiento de la III Muestra Provincial</h2>
+            <p>Estamos muy orgullosos de anunciar que la III Muestra Provincial de Artesanía se llevará a cabo en la Plaza de Armas de Ancud. Este evento no es solo una feria, es un espacio de resistencia cultural donde la madera nativa, la lana de oveja y las fibras vegetales cobran vida.</p>
+            <p>Tendremos música en vivo, degustación de gastronomía local y demostraciones de oficio en tiempo real. ¡Te esperamos!</p>
+        </div>
+    </div>
+</div>
+
+<div id="noticia2" class="modal">
+    <div class="modal-content">
+        <span class="close-modal" onclick="closeModal('noticia2')">&times;</span>
+        <div class="modal-body">
+            <h2>Taller de Cestería en Manilla</h2>
+            <p>El pasado fin de semana, la maestra artesana llevó a cabo un taller intensivo sobre la recolección y preparación de la manilla. Participantes de diversas edades aprendieron a tejer sus propios cestos, manteniendo viva una tradición que define la identidad costera de Ancud.</p>
+        </div>
+    </div>
+</div>
 
 <footer>
     <div style="max-width: 800px; margin: 0 auto;">
@@ -141,6 +138,26 @@
         <p style="font-size: 0.8rem; opacity: 0.7;">Diseñado por Sebastián Reyes Caimapo</p>
     </div>
 </footer>
+
+<script>
+    function openModal(id) {
+        document.getElementById(id).style.display = "block";
+        document.body.style.overflow = "hidden"; // Evita scroll atrás
+    }
+
+    function closeModal(id) {
+        document.getElementById(id).style.display = "none";
+        document.body.style.overflow = "auto"; // Devuelve scroll
+    }
+
+    // Cerrar si hace clic fuera de la caja blanca
+    window.onclick = function(event) {
+        if (event.target.className === 'modal') {
+            event.target.style.display = "none";
+            document.body.style.overflow = "auto";
+        }
+    }
+</script>
 
 </body>
 </html>
