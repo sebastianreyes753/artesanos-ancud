@@ -81,7 +81,7 @@
         .modal-body img { width: 100%; height: 350px; object-fit: cover; border-radius: 8px; margin-bottom: 25px; }
         .modal-body h2 { margin-bottom: 5px; }
         .modal-body .artesano-author { color: var(--tierra); font-weight: 700; font-size: 0.9rem; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 20px; display: block; }
-        .modal-body p { margin-bottom: 15px; font-size: 1.05rem; color: var(--texto); line-height: 1.7; }
+        .modal-body p { margin-bottom: 15px; font-size: 1.05rem; color: var(--texto); mercantile-line-height: 1.7; }
         .modal-body blockquote { font-style: italic; border-left: 4px solid var(--tierra); padding-left: 15px; margin: 20px 0; color: #555; }
 
         /* --- FOOTER UNIFICADO (INDEX) --- */
@@ -133,4 +133,149 @@
 <main>
     <div class="gallery-header">
         <h1>Manos que Crean</h1>
-        <p>Una muestra visual del trabajo que preserva nuestra identidad chilota. Cada pieza
+        <p>Una muestra visual del trabajo que preserva nuestra identidad chilota. Cada pieza cuenta una historia de esfuerzo y herencia.</p>
+    </div>
+
+    <section class="gallery-container">
+        <div class="gallery-grid" id="contenedor-galeria"></div>
+    </section>
+</main>
+
+<div id="contenedor-modales"></div>
+
+<footer>
+    <div style="max-width: 800px; margin: 0 auto;">
+        <p><strong>Copyright © 2026 Agrupación de Artesanos y Oficios de Ancud</strong></p>
+        <div class="footer-line"></div>
+        <p style="font-size: 0.8rem; opacity: 0.7;">Diseñado por Sebastián Reyes Caimapo</p>
+    </div>
+</footer>
+
+<script>
+    // 1. Datos de respaldo integrados (Evita errores CORS abriendo el archivo localmente)
+    const datosArtesanosRespando = [
+      {
+        "id": "cesteria-catrilef",
+        "titulo": "Cestería Catrilef",
+        "imagen": "patricia-catrilef.jpg",
+        "resumen": "Trenzando fibras vegetales.",
+        "autor": "Patricia Lorena Catrilef Navarrete",
+        "cita": "Desde niña creé un vínculo con el oficio, acompañando a mis padres a recolectar el material y a vender canastos de boqui y quila que se usaban para sacar las papas o mariscar.",
+        "descripcion": "Hija de padres artesanos, oriunda de Osorno (San Juan de la Costa), se siente chilota de corazón. Desde el año 2008 se dedica profundamente a la cestería de manila, boqui y junquillo, además de confeccionar murales decorativos combinando fibras y lanas.<br><br><strong>Trayectoria y Talleres:</strong><br>• Reside en Ancud (sector Altos de Caracoles), donde tiene su taller.<br>• Pertenece a una asociación indígena local enfocado en el rescate cultural.<br>• 2019: Expuso en la muestra fotográfica 'Retratando el patrimonio cultural y natural de Chiloé' en la Casa de la Cultura de Ancud.<br>• 2020-2024: Ha impartido múltiples talleres de cestería tradicional e inclusiva a través del Ministerio de las Culturas en Ancud y Quemchi.<br><br><strong>Contacto:</strong><br>• Instagram: @Cesteria_Catrilef<br>• Facebook: @Cesteria_Catrilef<br>• Teléfono: 947480909<br>• Correo: Cesteriachiloe@gmail.com"
+      },
+      {
+        "id": "quelgo",
+        "titulo": "Tejido en Quelgo",
+        "imagen": "foto1.jpg",
+        "resumen": "Lana de oveja procesada a mano y tejida en telar tradicional.",
+        "autor": "Por Sra. María Rain, Tejedora de sector Pupelde",
+        "cita": "El secreto del quelgo no está en la fuerza, sino en la paciencia de las manos que cruzan la hebra.",
+        "descripcion": "El proceso comienza desde la esquila de la oveja, pasando por el lavado en río, el escarmenado, el hilado en huso o rueca, hasta llegar al armado del telar horizontal o 'quelgo'."
+      },
+      {
+        "id": "madera",
+        "titulo": "Escultura en Madera",
+        "imagen": "foto2.jpg",
+        "resumen": "Tallado fino en maderas nativas como Ciruelillo y Alerce.",
+        "autor": "Por Don Juan Cárdenas, Tallador Tradicional",
+        "cita": "La madera nativa ya tiene una forma viva por dentro; mi trabajo con las gubias es simplemente retirar las capas.",
+        "descripcion": "Utilizando principalmente maderas caídas de manera sustentable en los bosques del norte de la isla, como el alerce, ciruelillo, luma o mañío, los talladores locales dan forma a réplicas patrimoniales."
+      }
+    ];
+
+    // 2. Control del menú responsive (Hamburguesa)
+    const hamburger = document.getElementById('hamburger');
+    const navLinks = document.getElementById('nav-links');
+
+    hamburger.addEventListener('click', () => {
+        navLinks.classList.toggle('active');
+        const spans = hamburger.querySelectorAll('span');
+        spans[0].style.transform = navLinks.classList.contains('active') ? 'rotate(45deg) translate(5px, 5px)' : 'none';
+        spans[1].style.opacity = navLinks.classList.contains('active') ? '0' : '1';
+        spans[2].style.transform = navLinks.classList.contains('active') ? 'rotate(-45deg) translate(7px, -6px)' : 'none';
+    });
+
+    document.querySelectorAll('.nav-links a').forEach(link => {
+        link.addEventListener('click', () => {
+            navLinks.classList.remove('active');
+        });
+    });
+
+    // 3. Renderizar las tarjetas y modales en pantalla 
+    function renderizarElementos(listaArtesanos) {
+        const grid = document.getElementById('contenedor-galeria');
+        const modalesBox = document.getElementById('contenedor-modales');
+        
+        grid.innerHTML = "";
+        modalesBox.innerHTML = "";
+
+        listaArtesanos.forEach(artesano => {
+            // Inyectar tarjeta HTML
+            grid.innerHTML += `
+                <div class="gallery-card" onclick="openModal('modal-${artesano.id}')">
+                    <div class="image-box">
+                        <img src="${artesano.imagen}" alt="${artesano.titulo}">
+                    </div>
+                    <div class="info-box">
+                        <h3>${artesano.titulo}</h3>
+                        <p>${artesano.resumen}</p>
+                        <span class="read-more">Conocer Relato +</span>
+                    </div>
+                </div>
+            `;
+
+            // Inyectar modal oculto HTML
+            modalesBox.innerHTML += `
+                <div id="modal-${artesano.id}" class="modal">
+                    <div class="modal-content">
+                        <span class="close-modal" onclick="closeModal('modal-${artesano.id}')">&times;</span>
+                        <div class="modal-body">
+                            <img src="${artesano.imagen}" alt="${artesano.titulo}">
+                            <h2>${artesano.titulo}</h2>
+                            <span class="artesano-author">${artesano.autor}</span>
+                            <blockquote style="font-style: italic; border-left: 4px solid var(--tierra); padding-left: 15px; margin: 20px 0; color: #555;">"${artesano.cita}"</blockquote>
+                            <p>${artesano.descripcion}</p>
+                        </div>
+                    </div>
+                </div>
+            `;
+        });
+    }
+
+    // 4. Intentar cargar desde JSON, si falla por CORS usa el respaldo interno
+    async function inicializarGaleria() {
+        try {
+            const respuesta = await fetch('artesanos.json');
+            if (!respuesta.ok) throw new Error("No se pudo leer el archivo");
+            const datosJson = await respuesta.json();
+            renderizarElementos(datosJson);
+            console.log("Cargado con éxito desde artesanos.json");
+        } catch (error) {
+            console.warn("Abriendo modo local o error en JSON. Usando datos integrados de respaldo.");
+            renderizarElementos(datosArtesanosRespando);
+        }
+    }
+
+    // Funciones globales para abrir y cerrar ventanas emergentes
+    function openModal(id) {
+        document.getElementById(id).style.display = "block";
+        document.body.style.overflow = "hidden"; 
+    }
+
+    function closeModal(id) {
+        document.getElementById(id).style.display = "none";
+        document.body.style.overflow = "auto";
+    }
+
+    window.onclick = function(event) {
+        if (event.target.className === 'modal') {
+            event.target.style.display = "none";
+            document.body.style.overflow = "auto";
+        }
+    }
+
+    // Ejecutar la carga al iniciar
+    window.onload = inicializarGaleria;
+</script>
+</body>
+</html>
