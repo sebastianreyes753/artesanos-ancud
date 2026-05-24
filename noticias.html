@@ -18,53 +18,60 @@
 
         h1, h2, h3 { font-family: 'Lora', serif; color: var(--madera); }
 
-        /* --- NAVEGACIÓN UNIFICADA (INDEX) --- */
+        /* --- NAVEGACIÓN MODERNA Y RESPONSIVA --- */
         .navbar { display: flex; justify-content: space-between; align-items: center; padding: 0 5%; height: 85px; background-color: rgba(249, 247, 242, 0.98); position: sticky; top: 0; z-index: 2000; border-bottom: 2px solid #E5DED1; box-shadow: var(--shadow); }
-        .logo-container { display: flex; align-items: center; text-decoration: none; color: var(--madera); z-index: 2001; }
-        .logo-img { height: 60px; margin-right: 12px; }
-        .logo-container strong { font-size: 1.1rem; letter-spacing: 1px; }
+        .logo-container { display: flex; align-items: center; text-decoration: none; color: var(--madera); z-index: 2100; }
+        .logo-img { height: 60px; width: auto; margin-right: 12px; }
+        .logo-container strong { font-size: 1.05rem; letter-spacing: 1px; }
         .nav-links { display: flex; list-style: none; align-items: center; }
         .nav-links li { margin-left: 25px; position: relative; }
         .nav-links a { text-decoration: none; color: var(--madera); font-weight: 600; font-size: 0.9rem; transition: 0.3s; text-transform: uppercase; }
         .nav-links a:hover { color: var(--tierra); }
         
-        /* Dropdown Estilizado */
         .dropdown-content { display: none; position: absolute; background: var(--blanco); min-width: 200px; top: 100%; left: 0; box-shadow: var(--shadow); border-radius: 4px; padding: 10px 0; border-top: 3px solid var(--tierra); }
         .dropdown-content a { padding: 10px 20px; display: block; text-transform: none; font-size: 0.85rem; color: var(--texto); }
         .dropdown-content a:hover { background-color: var(--hueso); color: var(--tierra); }
         .dropdown:hover .dropdown-content { display: block; }
         
-        /* Menu Hamburguesa */
-        .hamburger { display: none; cursor: pointer; flex-direction: column; gap: 5px; z-index: 2001; }
-        .hamburger span { width: 28px; height: 3px; background: var(--madera); border-radius: 2px; transition: 0.3s; }
+        .hamburger { display: none; cursor: pointer; flex-direction: column; justify-content: space-between; width: 26px; height: 18px; z-index: 2100; }
+        .hamburger span { width: 100%; height: 3px; background: var(--madera); border-radius: 2px; transition: transform 0.3s ease, opacity 0.3s ease; }
 
         /* --- CONTENIDO NOTICIAS --- */
-        .news-header { padding: 60px 5%; text-align: center; }
+        .news-header { padding: 60px 5% 30px; text-align: center; }
         .ornamento { width: 60px; height: 3px; background: var(--tierra); margin: 15px auto; }
         .news-feed { max-width: 900px; margin: 0 auto 80px; padding: 0 5%; }
         .news-card { background: var(--blanco); border-radius: 8px; overflow: hidden; margin-bottom: 35px; border: 1px solid #E5DED1; box-shadow: var(--shadow); transition: 0.3s; cursor: pointer; display: flex; align-items: center; }
         .news-card:hover { transform: translateY(-3px); border-color: var(--tierra); }
         .news-info { padding: 30px; flex: 1; }
         .news-tag { color: var(--tierra); font-weight: 700; font-size: 0.7rem; letter-spacing: 2px; }
-        .news-card h3 { margin: 10px 0; }
+        .news-card h3 { margin: 10px 0; font-size: 1.4rem; }
+        .news-card p { font-size: 0.95rem; color: #555; margin-bottom: 15px; }
 
-        /* --- MODALES --- */
+        /* --- MODALES OPTIMIZADOS --- */
         .modal { display: none; position: fixed; z-index: 3000; left: 0; top: 0; width: 100%; height: 100%; background-color: rgba(93, 64, 55, 0.85); backdrop-filter: blur(4px); }
-        .modal-content { background-color: var(--hueso); margin: 5vh auto; padding: 40px; width: 90%; max-width: 800px; border-radius: 12px; position: relative; max-height: 85vh; overflow-y: auto; box-shadow: 0 20px 40px rgba(0,0,0,0.2); border-top: 6px solid var(--tierra); }
-        .close-modal { position: absolute; right: 25px; top: 15px; font-size: 35px; cursor: pointer; color: var(--madera); font-weight: bold; }
-        .modal-body img { width: 100%; border-radius: 8px; margin-bottom: 25px; }
+        .modal-content { background-color: var(--hueso); margin: 5vh auto; padding: 30px 20px; width: 92%; max-width: 800px; border-radius: 12px; position: relative; max-height: 85vh; overflow-y: auto; box-shadow: 0 20px 40px rgba(0,0,0,0.2); border-top: 6px solid var(--tierra); }
+        .close-modal { position: absolute; right: 20px; top: 10px; font-size: 30px; cursor: pointer; color: var(--madera); font-weight: bold; z-index: 10; }
+        .modal-body img { width: 100%; height: auto; max-height: 400px; object-fit: cover; border-radius: 8px; margin-bottom: 25px; }
+        .modal-body h2 { margin-bottom: 15px; font-size: 1.8rem; }
+        .modal-body p { margin-bottom: 15px; font-size: 1rem; color: var(--texto); }
 
-        /* --- FOOTER UNIFICADO (INDEX) --- */
-        footer { background: var(--madera); color: var(--hueso); padding: 50px 5% 30px; text-align: center; }
-        .footer-line { width: 100%; height: 1px; background: rgba(255,255,255,0.1); margin: 25px 0; }
+        /* --- FOOTER UNIFICADO --- */
+        footer { background: var(--madera); color: var(--hueso); padding: 40px 5%; text-align: center; }
+        .footer-line { width: 100%; height: 1px; background: rgba(255,255,255,0.1); margin: 20px 0; }
 
+        /* --- RESPONSIVE MÓVIL --- */
         @media (max-width: 992px) {
             .hamburger { display: flex; }
-            .nav-links { position: fixed; top: 0; left: -100%; width: 80%; height: 100vh; background: var(--hueso); flex-direction: column; padding-top: 100px; transition: 0.4s; box-shadow: 10px 0 30px rgba(0,0,0,0.1); }
-            .nav-links.active { left: 0; }
-            .nav-links li { margin: 20px 0; width: 100%; text-align: center; }
-            .dropdown-content { position: static; box-shadow: none; background: transparent; display: block; border: none; }
-            .modal-content { padding: 20px; margin-top: 10vh; }
+            .nav-links { position: fixed; top: 0; right: -100%; width: 280px; height: 100vh; background-color: rgba(249, 247, 242, 0.98); backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); flex-direction: column; align-items: flex-start; justify-content: flex-start; padding: 120px 40px 40px 40px; transition: right 0.4s cubic-bezier(0.25, 1, 0.5, 1); box-shadow: -5px 0 25px rgba(0,0,0,0.08); border-left: 1px solid #E5DED1; }
+            .nav-links.active { right: 0; }
+            .nav-links li { margin: 0 0 25px 0; width: 100%; text-align: left; }
+            .nav-links a { font-size: 1.1rem; display: block; letter-spacing: 1px; }
+            .dropdown-content { display: block; position: static; box-shadow: none; background: transparent; border: none; padding: 10px 0 0 15px; }
+            .dropdown-content a { padding: 8px 0; font-size: 0.95rem; color: var(--texto); opacity: 0.85; }
+            .hamburger.active span:nth-child(1) { transform: translateY(7.5px) rotate(45deg); }
+            .hamburger.active span:nth-child(2) { opacity: 0; }
+            .hamburger.active span:nth-child(3) { transform: translateY(-7.5px) rotate(-45deg); }
+            .modal-content { padding: 25px 15px; margin-top: 4vh; max-height: 90vh; }
         }
     </style>
 </head>
@@ -75,11 +82,9 @@
         <img src="https://drive.google.com/thumbnail?id=17zcF4Qc9yRwIVoauzdQVPPr6f3JUfLmI&sz=w500" alt="Logo" class="logo-img">
         <strong>ARTESANOS DE ANCUD</strong>
     </a>
-    
     <div class="hamburger" id="hamburger">
         <span></span><span></span><span></span>
     </div>
-
     <nav>
         <ul class="nav-links" id="nav-links">
             <li><a href="index.html">Inicio</a></li>
@@ -128,7 +133,7 @@
     <div class="modal-content">
         <span class="close-modal" onclick="closeModal('modal1')">&times;</span>
         <div class="modal-body">
-            <img src="https://padlet.com/embed/xede5en0f4r2af6x" alt="Muestra">
+            <img src="https://images.unsplash.com/photo-1528813122114-16a7f050b16a?auto=format&fit=crop&q=80" alt="Muestra">
             <h2>Lanzamiento III Muestra Provincial</h2>
             <p>La Agrupación de Artesanos de Ancud invita a toda la comunidad a participar de la inauguración de la III Muestra Provincial.</p>
             <p>Contaremos con la presencia de maestros de diversas comunas de Chiloé, quienes exhibirán sus obras y compartirán sus procesos creativos en vivo.</p>
@@ -140,9 +145,9 @@
     <div class="modal-content" style="max-width: 900px; height: 80vh;">
         <span class="close-modal" onclick="closeModal('modalWidget')">&times;</span>
         <div class="modal-body" style="height: 90%;">
-            <h2 style="text-align: center;">Últimas Novedades</h2>
-            <p style="text-align: center; font-size: 0.9rem; margin-bottom: 20px;">Actualizado desde el taller</p>
-            <iframe src="AQUÍ_PEGA_TU_LINK_DE_PADLET" width="100%" height="100%" style="border:none; border-radius: 8px; min-height: 450px;"></iframe>
+            <h2 style="text-align: center; margin-bottom: 5px;">Últimas Novedades</h2>
+            <p style="text-align: center; font-size: 0.9rem; margin-bottom: 20px; color: var(--tierra);">Actualizado desde el taller</p>
+            <iframe src="AQUÍ_PEGA_TU_LINK_DE_PADLET" width="100%" height="100%" style="border:none; border-radius: 8px; min-height: 380px;"></iframe>
         </div>
     </div>
 </div>
@@ -156,24 +161,24 @@
 </footer>
 
 <script>
+    // Lógica unificada para el menú móvil lateral (Side Drawer)
     const hamburger = document.getElementById('hamburger');
     const navLinks = document.getElementById('nav-links');
-
-    hamburger.addEventListener('click', () => {
-        navLinks.classList.toggle('active');
-        const spans = hamburger.querySelectorAll('span');
-        spans[0].style.transform = navLinks.classList.contains('active') ? 'rotate(45deg) translate(5px, 5px)' : 'none';
-        spans[1].style.opacity = navLinks.classList.contains('active') ? '0' : '1';
-        spans[2].style.transform = navLinks.classList.contains('active') ? 'rotate(-45deg) translate(7px, -6px)' : 'none';
-    });
-
-    document.querySelectorAll('.nav-links a').forEach(link => {
-        link.addEventListener('click', () => {
-            navLinks.classList.remove('active');
+    
+    if (hamburger && navLinks) {
+        hamburger.addEventListener('click', () => {
+            hamburger.classList.toggle('active');
+            navLinks.classList.toggle('active');
         });
-    });
+        document.querySelectorAll('.nav-links a').forEach(link => {
+            link.addEventListener('click', () => {
+                hamburger.classList.remove('active');
+                navLinks.classList.remove('active');
+            });
+        });
+    }
 
-    // Scripts de modales propios de noticias
+    // Funciones para el manejo de las ventanas emergentes (Modales)
     function openModal(id) {
         document.getElementById(id).style.display = "block";
         document.body.style.overflow = "hidden"; 
