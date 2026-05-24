@@ -11,101 +11,75 @@
             --hueso: #F9F7F2; --madera: #5D4037; --tierra: #B5835A; --texto: #4A443F; --blanco: #ffffff; --shadow: 0 8px 20px rgba(0,0,0,0.05);
         }
         * { margin: 0; padding: 0; box-sizing: border-box; }
-        
         html, body { height: 100%; margin: 0; display: flex; flex-direction: column; }
         body { font-family: 'Montserrat', sans-serif; background-color: var(--hueso); color: var(--texto); line-height: 1.8; }
         main { flex: 1; }
-        
         h1, h2, h3 { font-family: 'Lora', serif; color: var(--madera); }
         
-        /* --- NAVEGACIÓN UNIFICADA --- */
-        .navbar { display: flex; justify-content: space-between; align-items: center; padding: 0; padding-right: 5%; height: 85px; background-color: rgba(249, 247, 242, 0.98); position: sticky; top: 0; z-index: 2000; border-bottom: 2px solid #E5DED1; box-shadow: var(--shadow); }
-        .logo-container { display: flex; align-items: center; text-decoration: none; color: var(--madera); z-index: 2001; }
-        .logo-img { height: 85px; margin-right: 12px; }
-        .logo-container strong { font-size: 1.1rem; letter-spacing: 1px; }
+        /* --- NAVEGACIÓN --- */
+        .navbar { display: flex; justify-content: space-between; align-items: center; padding: 0 5%; height: 85px; background-color: rgba(249, 247, 242, 0.98); position: sticky; top: 0; z-index: 2000; border-bottom: 2px solid #E5DED1; box-shadow: var(--shadow); }
+        .logo-container { display: flex; align-items: center; text-decoration: none; color: var(--madera); z-index: 2100; }
+        .logo-img { height: 60px; width: auto; margin-right: 12px; }
+        .logo-container strong { font-size: 1.05rem; letter-spacing: 1px; }
         .nav-links { display: flex; list-style: none; align-items: center; }
         .nav-links li { margin-left: 25px; position: relative; }
         .nav-links a { text-decoration: none; color: var(--madera); font-weight: 600; font-size: 0.9rem; transition: 0.3s; text-transform: uppercase; }
         .nav-links a:hover { color: var(--tierra); }
         
-        /* Dropdown Estilizado */
         .dropdown-content { display: none; position: absolute; background: var(--blanco); min-width: 200px; top: 100%; left: 0; box-shadow: var(--shadow); border-radius: 4px; padding: 10px 0; border-top: 3px solid var(--tierra); }
         .dropdown-content a { padding: 10px 20px; display: block; text-transform: none; font-size: 0.85rem; color: var(--texto); }
         .dropdown-content a:hover { background-color: var(--hueso); color: var(--tierra); }
         .dropdown:hover .dropdown-content { display: block; }
         
-        /* Menu Hamburguesa */
-        .hamburger { display: none; cursor: pointer; flex-direction: column; gap: 5px; z-index: 2001; }
-        .hamburger span { width: 28px; height: 3px; background: var(--madera); border-radius: 2px; transition: 0.3s; }
+        .hamburger { display: none; cursor: pointer; flex-direction: column; justify-content: space-between; width: 26px; height: 18px; z-index: 2100; }
+        .hamburger span { width: 100%; height: 3px; background: var(--madera); border-radius: 2px; transition: transform 0.3s ease, opacity 0.3s ease; }
         
-        /* Encabezado de Galería */
-        .gallery-header { padding: 80px 5% 40px; text-align: center; background: linear-gradient(to bottom, #f2ede4, var(--hueso)); }
-        .gallery-header h1 { font-size: 3rem; margin-bottom: 15px; }
-        .gallery-header p { max-width: 700px; margin: 0 auto; color: #666; font-size: 1.1rem; }
-
-        /* Cuadrícula de Galería */
-        .gallery-container { padding: 40px 5% 100px; }
-        .gallery-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 40px; max-width: 1200px; margin: 0 auto; }
+        /* --- CUERPO GALERÍA --- */
+        .gallery-header { padding: 60px 5% 30px; text-align: center; background: linear-gradient(to bottom, #f2ede4, var(--hueso)); }
+        .gallery-header h1 { font-size: clamp(2rem, 5vw, 3rem); margin-bottom: 10px; }
+        .gallery-header p { max-width: 700px; margin: 0 auto; color: #666; font-size: 1rem; }
+        .gallery-container { padding: 20px 5% 80px; }
+        .gallery-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(290px, 1fr)); gap: 30px; max-width: 1200px; margin: 0 auto; }
         
-        .gallery-card { 
-            background: var(--blanco); 
-            border-radius: 15px; 
-            overflow: hidden; 
-            box-shadow: var(--shadow); 
-            transition: transform 0.4s ease, border-color 0.3s; 
-            cursor: pointer;
-            border: 1px solid #E5DED1;
-        }
-        .gallery-card:hover { transform: translateY(-10px); border-color: var(--tierra); }
-        .image-box { width: 100%; height: 400px; overflow: hidden; position: relative; }
+        .gallery-card { background: var(--blanco); border-radius: 12px; overflow: hidden; box-shadow: var(--shadow); transition: transform 0.4s ease, border-color 0.3s; cursor: pointer; border: 1px solid #E5DED1; }
+        .gallery-card:hover { transform: translateY(-5px); border-color: var(--tierra); }
+        .image-box { width: 100%; height: 320px; overflow: hidden; }
         .image-box img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.6s ease; }
-        .gallery-card:hover .image-box img { transform: scale(1.1); }
-        .info-box { padding: 25px; text-align: center; }
-        .info-box h3 { margin-bottom: 10px; font-size: 1.4rem; }
-        .info-box p { font-size: 0.95rem; color: #777; font-style: italic; }
-        .info-box .read-more { display: block; margin-top: 15px; color: var(--tierra); font-weight: 700; font-size: 0.8rem; text-transform: uppercase; letter-spacing: 1px; }
+        .gallery-card:hover .image-box img { transform: scale(1.05); }
+        .info-box { padding: 20px; text-align: center; }
+        .info-box h3 { margin-bottom: 8px; font-size: 1.4rem; }
+        .info-box p { font-size: 0.9rem; color: #777; font-style: italic; }
+        .info-box .read-more { display: block; margin-top: 12px; color: var(--tierra); font-weight: 700; font-size: 0.8rem; text-transform: uppercase; }
 
-        /* --- MODALES Y MINI GALERÍA --- */
-        .modal { 
-            display: none; position: fixed; z-index: 3000; left: 0; top: 0; 
-            width: 100%; height: 100%; background-color: rgba(93, 64, 55, 0.85); 
-            backdrop-filter: blur(4px); 
-        }
-        .modal-content { 
-            background-color: var(--hueso); margin: 5vh auto; padding: 40px; 
-            width: 90%; max-width: 700px; border-radius: 12px; position: relative; 
-            max-height: 85vh; overflow-y: auto; box-shadow: 0 20px 40px rgba(0,0,0,0.2); 
-            border-top: 6px solid var(--tierra); 
-        }
-        .close-modal { position: absolute; right: 25px; top: 15px; font-size: 35px; cursor: pointer; color: var(--madera); font-weight: bold; }
+        /* --- MODALES OPTIMIZADOS PARA CELULAR --- */
+        .modal { display: none; position: fixed; z-index: 3000; left: 0; top: 0; width: 100%; height: 100%; background-color: rgba(93, 64, 55, 0.85); backdrop-filter: blur(4px); }
+        .modal-content { background-color: var(--hueso); margin: 3vh auto; padding: 30px 20px; width: 92%; max-width: 700px; border-radius: 12px; position: relative; max-height: 94vh; overflow-y: auto; border-top: 6px solid var(--tierra); }
+        .close-modal { position: absolute; right: 20px; top: 10px; font-size: 30px; cursor: pointer; color: var(--madera); font-weight: bold; z-index: 10; }
+        .modal-body img.main-photo { width: 100%; height: auto; max-height: 350px; object-fit: cover; border-radius: 8px; margin-bottom: 15px; }
         
-        .modal-body img.main-photo { width: 100%; height: 380px; object-fit: cover; border-radius: 8px; margin-bottom: 15px; display: block; }
+        .modal-gallery-grid { display: flex; gap: 10px; margin-bottom: 20px; overflow-x: auto; padding-bottom: 5px; -webkit-overflow-scrolling: touch; }
+        .modal-gallery-thumb { width: 85px; height: 65px; object-fit: cover; border-radius: 6px; cursor: pointer; flex-shrink: 0; border: 2px solid transparent; }
         
-        /* Estilos de las miniaturas */
-        .modal-gallery-grid { display: flex; gap: 10px; margin-bottom: 25px; overflow-x: auto; padding-bottom: 8px; }
-        .modal-gallery-thumb { width: 100px; height: 75px; object-fit: cover; border-radius: 6px; cursor: pointer; border: 2px solid transparent; transition: 0.2s; flex-shrink: 0; }
-        .modal-gallery-thumb:hover { border-color: var(--tierra); transform: scale(1.05); }
-        
-        .modal-body h2 { margin-bottom: 5px; }
-        .modal-body .artesano-author { color: var(--tierra); font-weight: 700; font-size: 0.9rem; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 20px; display: block; }
-        .modal-body p { margin-bottom: 15px; font-size: 1.05rem; color: var(--texto); line-height: 1.7; }
-        .modal-body blockquote { font-style: italic; border-left: 4px solid var(--tierra); padding-left: 15px; margin: 20px 0; color: #555; }
+        .modal-body h2 { margin-bottom: 5px; font-size: 1.6rem; }
+        .modal-body .artesano-author { color: var(--tierra); font-weight: 700; font-size: 0.85rem; text-transform: uppercase; margin-bottom: 15px; display: block; }
+        .modal-body p { margin-bottom: 12px; font-size: 0.95rem; color: var(--texto); }
+        .modal-body blockquote { font-style: italic; border-left: 4px solid var(--tierra); padding-left: 12px; margin: 15px 0; color: #555; font-size: 0.95rem; }
 
-        /* --- FOOTER UNIFICADO --- */
-        footer { background: var(--madera); color: var(--hueso); padding: 50px 5% 30px; text-align: center; }
-        .footer-line { width: 100%; height: 1px; background: rgba(255,255,255,0.1); margin: 25px 0; }
+        footer { background: var(--madera); color: var(--hueso); padding: 40px 5%; text-align: center; }
+        .footer-line { width: 100%; height: 1px; background: rgba(255,255,255,0.1); margin: 20px 0; }
 
-        /* Responsive */
+        /* --- RESPONSIVE MÓVIL --- */
         @media (max-width: 992px) {
             .hamburger { display: flex; }
-            .nav-links { position: fixed; top: 0; left: -100%; width: 80%; height: 100vh; background: var(--hueso); flex-direction: column; padding-top: 100px; transition: 0.4s; box-shadow: 10px 0 30px rgba(0,0,0,0.1); }
-            .nav-links.active { left: 0; }
-            .nav-links li { margin: 20px 0; width: 100%; text-align: center; }
-            .dropdown-content { position: static; box-shadow: none; background: transparent; display: block; border: none; }
-            .gallery-header h1 { font-size: 2.2rem; }
-            .image-box { height: 300px; }
-            .modal-content { padding: 25px; margin-top: 8vh; }
-            .modal-body img.main-photo { height: 260px; }
+            .nav-links { position: fixed; top: 0; right: -100%; width: 280px; height: 100vh; background-color: rgba(249, 247, 242, 0.98); backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); flex-direction: column; align-items: flex-start; justify-content: flex-start; padding: 120px 40px 40px 40px; transition: right 0.4s cubic-bezier(0.25, 1, 0.5, 1); box-shadow: -5px 0 25px rgba(0,0,0,0.08); border-left: 1px solid #E5DED1; }
+            .nav-links.active { right: 0; }
+            .nav-links li { margin: 0 0 25px 0; width: 100%; text-align: left; }
+            .nav-links a { font-size: 1.1rem; display: block; letter-spacing: 1px; }
+            .dropdown-content { display: block; position: static; box-shadow: none; background: transparent; border: none; padding: 10px 0 0 15px; }
+            .dropdown-content a { padding: 8px 0; font-size: 0.95rem; color: var(--texto); opacity: 0.85; }
+            .hamburger.active span:nth-child(1) { transform: translateY(7.5px) rotate(45deg); }
+            .hamburger.active span:nth-child(2) { opacity: 0; }
+            .hamburger.active span:nth-child(3) { transform: translateY(-7.5px) rotate(-45deg); }
         }
     </style>
 </head>
@@ -116,11 +90,9 @@
         <img src="https://drive.google.com/thumbnail?id=17zcF4Qc9yRwIVoauzdQVPPr6f3JUfLmI&sz=w500" alt="Logo" class="logo-img">
         <strong>ARTESANOS DE ANCUD</strong>
     </a>
-    
     <div class="hamburger" id="hamburger">
         <span></span><span></span><span></span>
     </div>
-
     <nav>
         <ul class="nav-links" id="nav-links">
             <li><a href="index.html">Inicio</a></li>
@@ -142,7 +114,6 @@
         <h1>Manos que Crean</h1>
         <p>Una muestra visual del trabajo que preserva nuestra identidad chilota. Cada pieza cuenta una historia de esfuerzo y herencia.</p>
     </div>
-
     <section class="gallery-container">
         <div class="gallery-grid" id="contenedor-galeria"></div>
     </section>
@@ -159,26 +130,24 @@
 </footer>
 
 <script>
-    // 1. Datos de respaldo de la galería (Rutas corregidas y asignación correcta de textos)
     const datosArtesanosRespando = [
       {
         "id": "cesteria-catrilef",
         "titulo": "Cestería Catrilef",
-        "imagenes": ["img/.jpeg", "img/.jpg", "img/.jpg"],
-        "resumen": "Trenzando fibres vegetales tradicionales.",
+        "imagenes": ["img/catrilef1.jpeg", "img/catrilef2.jpg", "img/catrilef3.jpg"],
+        "resumen": "Trenzando fibras vegetales de la costa ancuditana.",
         "autor": "Patricia Lorena Catrilef Navarrete",
-        "cita": "Desde niña creé un vínculo con el oficio, acompañando a mis padres a recolectar el material y a vender canastos de boqui y quila que se usaban para sacar las papas o mariscar.",
-        "descripcion": "Hija de padres artesanos, oriunda de Osorno (San Juan de la Costa), se siente chilota de corazón. Desde el año 2008 se dedica profundamente a la cestería de manila, boqui y junquillo, además de confeccionar murales decorativos combinando fibras y lanas.<br><br><strong>Trayectoria y Talleres:</strong><br>• Reside en Ancud (sector Altos de Caracoles), donde tiene su taller.<br>• Pertenece a una asociación indígena local enfocado en el rescate cultural.<br>• 2019: Expuso en la muestra fotográfica 'Retratando el patrimonio cultural y natural de Chiloé' en la Casa de la Cultura de Ancud.<br>• 2020-2024: Ha impartido múltiples talleres de cestería tradicional e inclusiva a través del Ministerio de las Culturas en Ancud y Quemchi.<br><br><strong>Contacto:</strong><br>• Instagram: @Cesteria_Catrilef<br>• Facebook: @Cesteria_Catrilef<br>• Teléfono: 947480909"
+        "cita": "Desde niña creé un vínculo con el oficio, acompañando a mis padres a recolectar el material y a vender canastos de boqui y quila.",
+        "descripcion": "Hija de padres artesanos, oriunda de Osorno (San Juan de la Costa), se siente chilota de corazón. Desde el año 2008 se dedica profundamente a la cestería de manila, boqui y junquillo, además de confeccionar murales decorativos combinando fibras y lanas.<br><br><strong>Trayectoria y Talleres:</strong><br>• Reside en Ancud (sector Altos de Caracoles), donde tiene su taller.<br>• Pertenece a una asociación indígena local enfocado en el rescate cultural.<br>• 2020-2024: Ha impartido múltiples talleres de cestería tradicional e inclusiva a través del Ministerio de las Culturas.<br><br><strong>Contacto:</strong><br>• Instagram: @Cesteria_Catrilef<br>• Facebook: @Cesteria_Catrilef<br>• Teléfono: 947480909"
       },
       {
         "id": "irenia-raimapo",
         "titulo": "Artesanía Raimapo",
-        // Aquí puedes meter las fotos reales de la Sra. Irenia (ej: irenia1.jpg, irenia2.jpg...)
-        "imagenes": ["img/.jpeg", "img/.jpg", "img/.jpg"],
+        "imagenes": ["img/catrilef1.jpeg"], 
         "resumen": "Reflejo vivo de dedicación, constancia y amor por las raíces.",
         "autor": "Irenia del Carmen Raimapo Catelican",
         "cita": "A los 13 años di mi primer pequeño paso en este arte. Desde entonces descubrí el valor de crear y transformar materiales simples en piezas llenas de significado.",
-        "descripcion": "Desde muy joven comenzó un camino que no solo marcaría su vida, sino que también daría forma a su identidad: el arte de la artesanía. En sus inicios, con manos inexpertas pero llenas de ilusión, fue descubriendo poco a poco el valor de crear, de transformar materiales simples en piezas llenas de significado.<br><br>Con el paso del tiempo, su talento fue creciendo junto a su experiencia. Cada aprendizaje, cada error y cada logro fueron parte de un proceso que la fortaleció como mujer y como artesana. Su trabajo no es solo un oficio, es una expresión profunda de su historia, de su cultura y de todo lo que lleva en el corazón. En cada una de sus creaciones se puede sentir el cariño, la paciencia y la dedicación que ha puesto durante años.<br><br>La artesanía de Irenia no solo habla de belleza, sino también de identidad. A través de sus manos, ha sabido mantener vivas tradiciones que muchas veces el tiempo intenta borrar. Sus piezas cuentan historias, transmiten emociones y连接 generaciones, convirtiéndose en un verdadero legado cultural. Su trayectoria es un testimonio de lucha, pasión y orgullo por sus raíces."
+        "descripcion": "Desde muy joven comenzó un camino que no solo marcaría su vida, sino que también daría forma a su identidad: el arte de la artesanía. Su trabajo es una expresión profunda de su historia, de su cultura y de todo lo que lleva en el corazón. En cada una de sus creaciones se puede sentir el cariño, la paciencia y la dedicación que ha puesto durante años, transmitiendo emociones y conectando generaciones como un verdadero legado patrimonial."
       },
       {
         "id": "flores-piedra-piutin",
@@ -187,101 +156,61 @@
         "resumen": "Fusionando legado ancestral con vanguardia.",
         "autor": "Flores de Piedra & Piutin Artesano Escultor",
         "cita": "Nuestras piezas artesanales conjugan lo estético con la funcionalidad, marcando una impronta única en cada obra elaborada a partir del diseño y la tradición.",
-        "descripcion": "Flores de Piedra y Piutin artesano escultor son una marca que revitaliza la relación artística con lo tradicional, uniendo de forma única el legado ancestral del archipiélago con la vanguardia contemporánea.<br><br>Su propuesta se sustenta en dos pilares fundamentales: por un lado, el conocimiento profundo de la técnica a través de la formación académica de Flores de Piedra; por el otro, el valioso legado familiar de generaciones dedicadas a la carpintería tradicional chilota por parte de Piutin.<br><br><strong>Trayectoria y Reconocimientos:</strong><br>• Cuentan con un amplio recorrido exponiendo en las ferias artesanales y encuentros costumbristas más importantes de todo Chile.<br>• Su trabajo ha sido galardonado con diversos reconocimientos y premios que destacan la excelencia de su artesanía y su valor patrimonial."
+        "descripcion": "Revitaliza la relación artística con lo tradicional, uniendo de forma única el legado ancestral del archipiélago con la vanguardia contemporánea. Su propuesta conjuga la formación académica de Flores de Piedra con el valioso legado familiar de generaciones dedicadas a la carpintería tradicional chilota por parte de Piutin.<br><br><strong>Trayectoria:</strong><br>• Amplio recorrido exponiendo en ferias artesanales y encuentros costumbristas en todo Chile."
       }
     ];
 
-    // 2. Control del menú responsive (Hamburguesa)
     const hamburger = document.getElementById('hamburger');
     const navLinks = document.getElementById('nav-links');
+    if (hamburger && navLinks) {
+        hamburger.addEventListener('click', () => {
+            hamburger.classList.toggle('active');
+            navLinks.classList.toggle('active');
+        });
+    }
 
-    hamburger.addEventListener('click', () => {
-        navLinks.classList.toggle('active');
-        const spans = hamburger.querySelectorAll('span');
-        spans[0].style.transform = navLinks.classList.contains('active') ? 'rotate(45deg) translate(5px, 5px)' : 'none';
-        spans[1].style.opacity = navLinks.classList.contains('active') ? '0' : '1';
-        spans[2].style.transform = navLinks.classList.contains('active') ? 'rotate(-45deg) translate(7px, -6px)' : 'none';
-    });
-
-    // 3. Renderizar las tarjetas y los modales con visores de fotos dinámicos
     function renderizarElementos(listaArtesanos) {
         const grid = document.getElementById('contenedor-galeria');
         const modalesBox = document.getElementById('contenedor-modales');
-        
-        grid.innerHTML = "";
-        modalesBox.innerHTML = "";
+        grid.innerHTML = ""; modalesBox.innerHTML = "";
 
         listaArtesanos.forEach(artesano => {
             const fotoPortada = artesano.imagenes[0];
-
-            // Generamos las miniaturas interactivas automáticamente
             const htmlMiniaturas = artesano.imagenes.map((foto, index) => `
-                <img src="${foto}" 
-                     class="modal-gallery-thumb" 
-                     alt="Muestra ${index + 1}" 
-                     onclick="document.getElementById('foto-principal-${artesano.id}').src='${foto}'">
+                <img src="${foto}" class="modal-gallery-thumb" alt="Muestra ${index + 1}" onclick="document.getElementById('foto-principal-${artesano.id}').src='${foto}'">
             `).join('');
 
-            // Inyectar tarjeta HTML dinámica
             grid.innerHTML += `
                 <div class="gallery-card" onclick="openModal('modal-${artesano.id}')">
-                    <div class="image-box">
-                        <img src="${fotoPortada}" alt="${artesano.titulo}">
-                    </div>
+                    <div class="image-box"><img src="${fotoPortada}" alt="${artesano.titulo}"></div>
                     <div class="info-box">
                         <h3>${artesano.titulo}</h3>
                         <p>${artesano.resumen}</p>
                         <span class="read-more">Conocer Relato +</span>
                     </div>
-                </div>
-            `;
+                </div>`;
 
-            // Inyectar modal dinámico con su visor integrado
             modalesBox.innerHTML += `
                 <div id="modal-${artesano.id}" class="modal">
                     <div class="modal-content">
                         <span class="close-modal" onclick="closeModal('modal-${artesano.id}')">&times;</span>
                         <div class="modal-body">
                             <img id="foto-principal-${artesano.id}" class="main-photo" src="${fotoPortada}" alt="${artesano.titulo}">
-                            
-                            <div class="modal-gallery-grid">
-                                ${htmlMiniaturas}
-                            </div>
-
+                            <div class="modal-gallery-grid">${htmlMiniaturas}</div>
                             <h2>${artesano.titulo}</h2>
                             <span class="artesano-author">${artesano.autor}</span>
                             <blockquote style="font-style: italic; border-left: 4px solid var(--tierra); padding-left: 15px; margin: 20px 0; color: #555;">"${artesano.cita}"</blockquote>
                             <p>${artesano.descripcion}</p>
                         </div>
                     </div>
-                </div>
-            `;
+                </div>`;
         });
     }
 
-    // 4. Inicializador automático
-    function inicializarGaleria() {
-        renderizarElementos(datosArtesanosRespando);
-    }
-
-    function openModal(id) {
-        document.getElementById(id).style.display = "block";
-        document.body.style.overflow = "hidden"; 
-    }
-
-    function closeModal(id) {
-        document.getElementById(id).style.display = "none";
-        document.body.style.overflow = "auto";
-    }
-
-    window.onclick = function(event) {
-        if (event.target.className === 'modal') {
-            event.target.style.display = "none";
-            document.body.style.overflow = "auto";
-        }
-    }
-
-    window.onload = inicializarGaleria;
+    function openModal(id) { document.getElementById(id).style.display = "block"; document.body.style.overflow = "hidden"; }
+    function closeModal(id) { document.getElementById(id).style.display = "none"; document.body.style.overflow = "auto"; }
+    window.onclick = function(e) { if (e.target.className === 'modal') { e.target.style.display = "none"; document.body.style.overflow = "auto"; } }
+    window.onload = function() { renderizarElementos(datosArtesanosRespando); }
 </script>
 </body>
 </html>
