@@ -16,11 +16,11 @@
         main { flex: 1; }
         h1, h2, h3 { font-family: 'Lora', serif; color: var(--madera); }
 
-        /* --- NAVEGACIÓN --- */
+        /* --- NAVEGACIÓN MODERNA Y RESPONSIVA --- */
         .navbar { display: flex; justify-content: space-between; align-items: center; padding: 0 5%; height: 85px; background-color: rgba(249, 247, 242, 0.98); position: sticky; top: 0; z-index: 2000; border-bottom: 2px solid #E5DED1; box-shadow: var(--shadow); }
-        .logo-container { display: flex; align-items: center; text-decoration: none; color: var(--madera); z-index: 2001; }
-        .logo-img { height: 60px; margin-right: 12px; }
-        .logo-container strong { font-size: 1.1rem; letter-spacing: 1px; }
+        .logo-container { display: flex; align-items: center; text-decoration: none; color: var(--madera); z-index: 2100; }
+        .logo-img { height: 60px; width: auto; margin-right: 12px; }
+        .logo-container strong { font-size: 1.05rem; letter-spacing: 1px; }
         .nav-links { display: flex; list-style: none; align-items: center; }
         .nav-links li { margin-left: 25px; position: relative; }
         .nav-links a { text-decoration: none; color: var(--madera); font-weight: 600; font-size: 0.9rem; transition: 0.3s; text-transform: uppercase; }
@@ -31,8 +31,8 @@
         .dropdown-content a:hover { background-color: var(--hueso); color: var(--tierra); }
         .dropdown:hover .dropdown-content { display: block; }
 
-        .hamburger { display: none; cursor: pointer; flex-direction: column; gap: 5px; z-index: 2001; }
-        .hamburger span { width: 28px; height: 3px; background: var(--madera); border-radius: 2px; transition: 0.3s; }
+        .hamburger { display: none; cursor: pointer; flex-direction: column; justify-content: space-between; width: 26px; height: 18px; z-index: 2100; }
+        .hamburger span { width: 100%; height: 3px; background: var(--madera); border-radius: 2px; transition: transform 0.3s ease, opacity 0.3s ease; }
 
         /* --- HERO --- */
         .hero { height: 75vh; background: linear-gradient(rgba(0,0,0,0.45), rgba(0,0,0,0.45)), url('https://images.unsplash.com/photo-1528813122114-16a7f050b16a?auto=format&fit=crop&q=80'); background-size: cover; background-position: center; display: flex; justify-content: center; align-items: center; text-align: center; color: var(--blanco); border-bottom: 8px solid var(--tierra); padding: 0 20px; }
@@ -67,6 +67,7 @@
             .hamburger.active span:nth-child(2) { opacity: 0; }
             .hamburger.active span:nth-child(3) { transform: translateY(-7.5px) rotate(-45deg); }
         }
+    </style>
 </head>
 <body>
 
@@ -135,16 +136,18 @@
 <script>
     const hamburger = document.getElementById('hamburger');
     const navLinks = document.getElementById('nav-links');
-    hamburger.addEventListener('click', () => {
-        navLinks.classList.toggle('active');
-        const spans = hamburger.querySelectorAll('span');
-        spans[0].style.transform = navLinks.classList.contains('active') ? 'rotate(45deg) translate(5px, 5px)' : 'none';
-        spans[1].style.opacity = navLinks.classList.contains('active') ? '0' : '1';
-        spans[2].style.transform = navLinks.classList.contains('active') ? 'rotate(-45deg) translate(7px, -6px)' : 'none';
-    });
-    document.querySelectorAll('.nav-links a').forEach(link => {
-        link.addEventListener('click', () => { navLinks.classList.remove('active'); });
-    });
+    if (hamburger && navLinks) {
+        hamburger.addEventListener('click', () => {
+            hamburger.classList.toggle('active');
+            navLinks.classList.toggle('active');
+        });
+        document.querySelectorAll('.nav-links a').forEach(link => {
+            link.addEventListener('click', () => {
+                hamburger.classList.remove('active');
+                navLinks.classList.remove('active');
+            });
+        });
+    }
 </script>
 </body>
 </html>
