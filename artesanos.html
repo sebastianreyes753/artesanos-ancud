@@ -26,6 +26,7 @@
         .nav-links a { text-decoration: none; color: var(--madera); font-weight: 600; font-size: 0.9rem; transition: 0.3s; text-transform: uppercase; }
         .nav-links a:hover { color: var(--tierra); }
         
+        /* Dropdown Estilizado (Escritorio) */
         .dropdown-content { display: none; position: absolute; background: var(--blanco); min-width: 200px; top: 100%; left: 0; box-shadow: var(--shadow); border-radius: 4px; padding: 10px 0; border-top: 3px solid var(--tierra); }
         .dropdown-content a { padding: 10px 20px; display: block; text-transform: none; font-size: 0.85rem; color: var(--texto); }
         .dropdown-content a:hover { background-color: var(--hueso); color: var(--tierra); }
@@ -34,49 +35,101 @@
         .hamburger { display: none; cursor: pointer; flex-direction: column; justify-content: space-between; width: 26px; height: 18px; z-index: 2100; }
         .hamburger span { width: 100%; height: 3px; background: var(--madera); border-radius: 2px; transition: transform 0.3s ease, opacity 0.3s ease; }
         
-        /* --- CUERPO GALERÍA --- */
-        .gallery-header { padding: 60px 5% 30px; text-align: center; background: linear-gradient(to bottom, #f2ede4, var(--hueso)); }
-        .gallery-header h1 { font-size: clamp(2rem, 5vw, 3rem); margin-bottom: 10px; }
-        .gallery-header p { max-width: 700px; margin: 0 auto; color: #666; font-size: 1rem; }
-        .gallery-container { padding: 20px 5% 80px; }
-        .gallery-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(290px, 1fr)); gap: 30px; max-width: 1200px; margin: 0 auto; }
-        
-        .gallery-card { background: var(--blanco); border-radius: 12px; overflow: hidden; box-shadow: var(--shadow); transition: transform 0.4s ease, border-color 0.3s; cursor: pointer; border: 1px solid #E5DED1; }
-        .gallery-card:hover { transform: translateY(-5px); border-color: var(--tierra); }
-        .image-box { width: 100%; height: 320px; overflow: hidden; }
-        .image-box img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.6s ease; }
-        .gallery-card:hover .image-box img { transform: scale(1.05); }
-        .info-box { padding: 20px; text-align: center; }
-        .info-box h3 { margin-bottom: 8px; font-size: 1.4rem; }
-        .info-box p { font-size: 0.9rem; color: #777; font-style: italic; }
-        .info-box .read-more { display: block; margin-top: 12px; color: var(--tierra); font-weight: 700; font-size: 0.8rem; text-transform: uppercase; }
+        /* --- GALERÍA FLICKR --- */
+        .galeria-seccion {
+            padding: 60px 10% 100px;
+            background-color: var(--hueso);
+        }
+        .galeria-header {
+            text-align: center;
+            max-width: 700px;
+            margin: 0 auto 30px;
+        }
+        .subtitulo-galeria {
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            color: var(--tierra);
+            font-weight: 700;
+            font-size: 0.85rem;
+        }
+        .ornamento { width: 80px; height: 3px; background: var(--tierra); margin: 20px auto; }
+        .contenedor-flickr {
+            max-width: 1000px;
+            margin: 0 auto;
+            border-radius: 8px;
+            overflow: hidden;
+            background: var(--blanco);
+            padding: 15px;
+            border: 1px solid #E5DED1;
+            box-shadow: var(--shadow);
+        }
 
-        /* --- MODALES OPTIMIZADOS PARA CELULAR --- */
-        .modal { display: none; position: fixed; z-index: 3000; left: 0; top: 0; width: 100%; height: 100%; background-color: rgba(93, 64, 55, 0.85); backdrop-filter: blur(4px); }
-        .modal-content { background-color: var(--hueso); margin: 3vh auto; padding: 30px 20px; width: 92%; max-width: 700px; border-radius: 12px; position: relative; max-height: 94vh; overflow-y: auto; border-top: 6px solid var(--tierra); }
-        .close-modal { position: absolute; right: 20px; top: 10px; font-size: 30px; cursor: pointer; color: var(--madera); font-weight: bold; z-index: 10; }
-        .modal-body img.main-photo { width: 100%; height: auto; max-height: 350px; object-fit: cover; border-radius: 8px; margin-bottom: 15px; }
-        
-        .modal-gallery-grid { display: flex; gap: 10px; margin-bottom: 20px; overflow-x: auto; padding-bottom: 5px; -webkit-overflow-scrolling: touch; }
-        .modal-gallery-thumb { width: 85px; height: 65px; object-fit: cover; border-radius: 6px; cursor: pointer; flex-shrink: 0; border: 2px solid transparent; }
-        
-        .modal-body h2 { margin-bottom: 5px; font-size: 1.6rem; }
-        .modal-body .artesano-author { color: var(--tierra); font-weight: 700; font-size: 0.85rem; text-transform: uppercase; margin-bottom: 15px; display: block; }
-        .modal-body p { margin-bottom: 12px; font-size: 0.95rem; color: var(--texto); }
-        .modal-body blockquote { font-style: italic; border-left: 4px solid var(--tierra); padding-left: 12px; margin: 15px 0; color: #555; font-size: 0.95rem; }
+        /* --- BOTÓN FLOTANTE WHATSAPP --- */
+        .btn-whatsapp {
+            position: fixed;
+            bottom: 25px;
+            right: 25px;
+            width: 60px;
+            height: 60px;
+            background-color: #25D366;
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25);
+            z-index: 3000;
+            transition: transform 0.3s ease, background-color 0.3s ease, box-shadow 0.3s ease;
+            text-decoration: none;
+        }
+        .btn-whatsapp:hover {
+            background-color: #128C7E;
+            transform: scale(1.1);
+            box-shadow: 0 6px 16px rgba(0, 0, 0, 0.35);
+        }
 
         footer { background: var(--madera); color: var(--hueso); padding: 40px 5%; text-align: center; }
         .footer-line { width: 100%; height: 1px; background: rgba(255,255,255,0.1); margin: 20px 0; }
 
-        /* --- RESPONSIVE MÓVIL --- */
+        /* --- RESPONSIVE MÓVIL MEJORADO --- */
         @media (max-width: 992px) {
             .hamburger { display: flex; }
-            .nav-links { position: fixed; top: 0; right: -100%; width: 280px; height: 100vh; background-color: rgba(249, 247, 242, 0.98); backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); flex-direction: column; align-items: flex-start; justify-content: flex-start; padding: 120px 40px 40px 40px; transition: right 0.4s cubic-bezier(0.25, 1, 0.5, 1); box-shadow: -5px 0 25px rgba(0,0,0,0.08); border-left: 1px solid #E5DED1; }
+            
+            /* Panel Lateral */
+            .nav-links { 
+                position: fixed; top: 0; right: -100%; width: 280px; max-width: 85%; height: 100vh; 
+                background-color: var(--hueso); 
+                flex-direction: column; align-items: flex-start; justify-content: flex-start; 
+                padding: 100px 30px 40px 30px; 
+                transition: right 0.4s cubic-bezier(0.25, 1, 0.5, 1); 
+                box-shadow: -5px 0 25px rgba(0,0,0,0.15); 
+                border-left: 1px solid #E5DED1;
+                overflow-y: auto;
+            }
             .nav-links.active { right: 0; }
-            .nav-links li { margin: 0 0 25px 0; width: 100%; text-align: left; }
-            .nav-links a { font-size: 1.1rem; display: block; letter-spacing: 1px; }
-            .dropdown-content { display: block; position: static; box-shadow: none; background: transparent; border: none; padding: 10px 0 0 15px; }
-            .dropdown-content a { padding: 8px 0; font-size: 0.95rem; color: var(--texto); opacity: 0.85; }
+            
+            /* Enlaces principales alineados a la izquierda */
+            .nav-links li { margin: 10px 0; width: 100%; text-align: left; }
+            .nav-links a { 
+                font-size: 1.1rem; display: block; letter-spacing: 1px; 
+                border-bottom: 1px solid rgba(0,0,0,0.05); padding-bottom: 12px; 
+            }
+            
+            /* Submenú tipo Acordeón */
+            .dropdown-content { 
+                display: none; 
+                position: static; box-shadow: none; background: transparent; 
+                border: none; border-left: 3px solid var(--tierra); 
+                padding: 5px 0 5px 20px; margin-top: 5px; 
+            }
+            .dropdown.abierto .dropdown-content { display: block; }
+            
+            .dropdown-content a { 
+                padding: 10px 0; font-size: 0.95rem; color: var(--texto); 
+                border-bottom: none; opacity: 0.85; 
+            }
+            
+            /* Animación de la Hamburguesa a una X */
             .hamburger.active span:nth-child(1) { transform: translateY(7.5px) rotate(45deg); }
             .hamburger.active span:nth-child(2) { opacity: 0; }
             .hamburger.active span:nth-child(3) { transform: translateY(-7.5px) rotate(-45deg); }
@@ -110,16 +163,23 @@
 </header>
 
 <main>
-    <div class="gallery-header">
-        <h1>Manos que Crean</h1>
-        <p>Una muestra visual del trabajo que preserva nuestra identidad chilota. Cada pieza cuenta una historia de esfuerzo y herencia.</p>
-    </div>
-    <section class="gallery-container">
-        <div class="gallery-grid" id="contenedor-galeria"></div>
+    <!-- GALERÍA EN LA NUBE (FLICKR FUNCIONAL) -->
+    <section class="galeria-seccion">
+        <div class="galeria-header">
+            <span class="subtitulo-galeria">Obras y Oficios</span>
+            <h2>Galería de Artesanos</h2>
+            <div class="ornamento"></div>
+            <p>Álbum fotográfico de nuestros trabajos, actualizado directamente desde la nube.</p>
+        </div>
+
+        <div class="contenedor-flickr" style="text-align: center; max-width: 900px; margin: 0 auto;">
+            <a data-flickr-embed="true" href="https://www.flickr.com/photos/204817977@N07/albums/72177720334919849" title="Día del Patrimonio 2026">
+                <img src="https://live.staticflickr.com/65535/55428783465_a1084fc875_h.jpg" width="100%" height="auto" alt="Día del Patrimonio 2026" style="border-radius: 8px; box-shadow: var(--shadow);"/>
+            </a>
+            <script async src="//embedr.flickr.com/assets/client-code.js" charset="utf-8"></script>
+        </div>
     </section>
 </main>
-
-<div id="contenedor-modales"></div>
 
 <footer>
     <div style="max-width: 800px; margin: 0 auto; display: flex; flex-direction: column; align-items: center; gap: 15px;">
@@ -133,88 +193,60 @@
     </div>
 </footer>
 
-<script>
-    const datosArtesanosRespando = [
-      {
-        "id": "cesteria-catrilef",
-        "titulo": "Cestería Catrilef",
-        "imagenes": ["img/.jpeg", "img/.jpg", ".jpg"],
-        "resumen": "Trenzando fibras vegetales de la costa ancuditana.",
-        "autor": "Patricia Lorena Catrilef Navarrete",
-        "cita": "Desde niña creé un vínculo con el oficio, acompañando a mis padres a recolectar el material y a vender canastos de boqui y quila.",
-        "descripcion": "Hija de padres artesanos, oriunda de Osorno (San Juan de la Costa), se siente chilota de corazón. Desde el año 2008 se dedica profundamente a la cestería de manila, boqui y junquillo, además de confeccionar murales decorativos combinando fibras y lanas.<br><br><strong>Trayectoria y Talleres:</strong><br>• Reside en Ancud (sector Altos de Caracoles), donde tiene su taller.<br>• Pertenece a una asociación indígena local enfocado en el rescate cultural.<br>• 2020-2024: Ha impartido múltiples talleres de cestería tradicional e inclusiva a través del Ministerio de las Culturas.<br><br><strong>Contacto:</strong><br>• Instagram: @Cesteria_Catrilef<br>• Facebook: @Cesteria_Catrilef<br>• Teléfono: 947480909"
-      },
-      {
-        "id": "irenia-raimapo",
-        "titulo": "Artesanía Raimapo",
-        "imagenes": ["img/.jpeg"], 
-        "resumen": "Reflejo vivo de dedicación, constancia y amor por las raíces.",
-        "autor": "Irenia del Carmen Raimapo Catelican",
-        "cita": "A los 13 años di mi primer pequeño paso en este arte. Desde entonces descubrí el valor de crear y transformar materiales simples en piezas llenas de significado.",
-        "descripcion": "Desde muy joven comenzó un camino que no solo marcaría su vida, sino que también daría forma a su identidad: el arte de la artesanía. Su trabajo es una expresión profunda de su historia, de su cultura y de todo lo que lleva en el corazón. En cada una de sus creaciones se puede sentir el cariño, la paciencia y la dedicación que ha puesto durante años, transmitiendo emociones y conectando generaciones como un verdadero legado patrimonial."
-      },
-      {
-        "id": "flores-piedra-piutin",
-        "titulo": "Flores de Piedra y Piutin",
-        "imagenes": ["img/piutin1.jpg"],
-        "resumen": "Fusionando legado ancestral con vanguardia.",
-        "autor": "Flores de Piedra & Piutin Artesano Escultor",
-        "cita": "Nuestras piezas artesanales conjugan lo estético con la funcionalidad, marcando una impronta única en cada obra elaborada a partir del diseño y la tradición.",
-        "descripcion": "Revitaliza la relación artística con lo tradicional, uniendo de forma única el legado ancestral del archipiélago con la vanguardia contemporánea. Su propuesta conjuga la formación académica de Flores de Piedra con el valioso legado familiar de generaciones dedicadas a la carpintería tradicional chilota por parte de Piutin.<br><br><strong>Trayectoria:</strong><br>• Amplio recorrido exponiendo en ferias artesanales y encuentros costumbristas en todo Chile."
-      }
-    ];
+<!-- BOTÓN FLOTANTE DE WHATSAPP -->
+<a href="https://wa.me/56957548863?text=Hola,%20quisiera%20consultar%20sobre%20las%20artesan%C3%ADas%20y%20la%20III%20Muestra%20Provincial" 
+   class="btn-whatsapp" 
+   target="_blank" 
+   rel="noopener noreferrer" 
+   aria-label="Contactar por WhatsApp">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" width="28" height="28" fill="white">
+        <path d="M380.9 97.1C339 55.1 283.2 32 223.9 32c-122.4 0-222 99.6-222 222 0 39.1 10.2 77.3 29.6 111L0 480l117.7-30.9c32.4 17.7 68.9 27 106.1 27h.1c122.3 0 224.1-99.6 224.1-222 0-59.3-25.2-115-67.1-157zm-157 341.6c-33.2 0-65.7-8.9-94-25.7l-6.7-4-69.8 18.3 18.6-68.1-4.4-7c-18.5-29.4-28.2-63.3-28.2-98.2 0-101.7 82.8-184.5 184.6-184.5 49.3 0 95.6 19.2 130.4 54.1 34.8 34.9 56.2 81.2 56.1 130.5 0 101.8-84.9 184.6-186.6 184.6zm101.2-138.2c-5.5-2.8-32.8-16.2-37.9-18-5.1-1.9-8.8-2.8-12.5 2.8-3.7 5.6-14.3 18-17.6 21.8-3.2 3.7-6.5 4.2-12 1.4-32.6-16.3-54-29.1-75.5-66-5.7-9.8 5.7-9.1 16.3-30.3 1.8-3.7.9-6.9-.5-9.7-1.4-2.8-12.5-30.1-17.1-41.2-4.5-10.8-9.1-9.3-12.5-9.5-3.2-.2-6.9-.2-10.6-.2-3.7 0-9.7 1.4-14.8 6.9-5.1 5.6-19.4 19-19.4 46.3 0 27.3 19.9 53.7 22.6 57.4 2.8 3.7 39.1 59.7 94.8 83.8 35.2 15.2 49 16.5 66.6 13.9 10.7-1.6 32.8-13.4 37.4-26.4 4.6-13 4.6-24.1 3.2-26.4-1.3-2.5-5-3.9-10.5-6.6z"/>
+    </svg>
+</a>
 
+<script>
     const hamburger = document.getElementById('hamburger');
     const navLinks = document.getElementById('nav-links');
-    if (hamburger && navLinks) {
-        hamburger.addEventListener('click', () => {
-            hamburger.classList.toggle('active');
-            navLinks.classList.toggle('active');
+    const spans = hamburger.querySelectorAll('span');
+
+    // 1. Botón Hamburguesa: Abrir/Cerrar menú
+    hamburger.addEventListener('click', () => {
+        navLinks.classList.toggle('active');
+        
+        if(navLinks.classList.contains('active')){
+            spans[0].style.transform = 'rotate(45deg) translate(5px, 5px)';
+            spans[1].style.opacity = '0';
+            spans[2].style.transform = 'rotate(-45deg) translate(7px, -6px)';
+        } else {
+            spans[0].style.transform = 'none';
+            spans[1].style.opacity = '1';
+            spans[2].style.transform = 'none';
+        }
+    });
+
+    // 2. Acordeón Móvil para "Artesanos ▼"
+    const dropdownMobile = document.querySelector('.dropdown > a');
+    if (dropdownMobile) {
+        dropdownMobile.addEventListener('click', function(e) {
+            if (window.innerWidth <= 992) {
+                e.preventDefault(); 
+                this.parentElement.classList.toggle('abierto');
+            }
         });
     }
 
-    function renderizarElementos(listaArtesanos) {
-        const grid = document.getElementById('contenedor-galeria');
-        const modalesBox = document.getElementById('contenedor-modales');
-        grid.innerHTML = ""; modalesBox.innerHTML = "";
-
-        listaArtesanos.forEach(artesano => {
-            const fotoPortada = artesano.imagenes[0];
-            const htmlMiniaturas = artesano.imagenes.map((foto, index) => `
-                <img src="${foto}" class="modal-gallery-thumb" alt="Muestra ${index + 1}" onclick="document.getElementById('foto-principal-${artesano.id}').src='${foto}'">
-            `).join('');
-
-            grid.innerHTML += `
-                <div class="gallery-card" onclick="openModal('modal-${artesano.id}')">
-                    <div class="image-box"><img src="${fotoPortada}" alt="${artesano.titulo}"></div>
-                    <div class="info-box">
-                        <h3>${artesano.titulo}</h3>
-                        <p>${artesano.resumen}</p>
-                        <span class="read-more">Conocer Relato +</span>
-                    </div>
-                </div>`;
-
-            modalesBox.innerHTML += `
-                <div id="modal-${artesano.id}" class="modal">
-                    <div class="modal-content">
-                        <span class="close-modal" onclick="closeModal('modal-${artesano.id}')">&times;</span>
-                        <div class="modal-body">
-                            <img id="foto-principal-${artesano.id}" class="main-photo" src="${fotoPortada}" alt="${artesano.titulo}">
-                            <div class="modal-gallery-grid">${htmlMiniaturas}</div>
-                            <h2>${artesano.titulo}</h2>
-                            <span class="artesano-author">${artesano.autor}</span>
-                            <blockquote style="font-style: italic; border-left: 4px solid var(--tierra); padding-left: 15px; margin: 20px 0; color: #555;">"${artesano.cita}"</blockquote>
-                            <p>${artesano.descripcion}</p>
-                        </div>
-                    </div>
-                </div>`;
+    // 3. Cerrar el menú general al hacer clic en cualquier otro enlace
+    document.querySelectorAll('.nav-links a').forEach(link => {
+        link.addEventListener('click', function(e) {
+            if(this === dropdownMobile && window.innerWidth <= 992) {
+                return;
+            }
+            navLinks.classList.remove('active');
+            spans[0].style.transform = 'none';
+            spans[1].style.opacity = '1';
+            spans[2].style.transform = 'none';
         });
-    }
-
-    function openModal(id) { document.getElementById(id).style.display = "block"; document.body.style.overflow = "hidden"; }
-    function closeModal(id) { document.getElementById(id).style.display = "none"; document.body.style.overflow = "auto"; }
-    window.onclick = function(e) { if (e.target.className === 'modal') { e.target.style.display = "none"; document.body.style.overflow = "auto"; } }
-    window.onload = function() { renderizarElementos(datosArtesanosRespando); }
+    });
 </script>
 </body>
 </html>
