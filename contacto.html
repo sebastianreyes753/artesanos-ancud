@@ -10,47 +10,61 @@
         :root {
             --hueso: #F9F7F2; --madera: #5D4037; --tierra: #B5835A; --texto: #4A443F; --blanco: #ffffff; --shadow: 0 8px 20px rgba(0,0,0,0.05);
         }
-        
+        * { margin: 0; padding: 0; box-sizing: border-box; }
         html, body { height: 100%; margin: 0; display: flex; flex-direction: column; }
-        body { font-family: 'Montserrat', sans-serif; background-color: var(--hueso); color: var(--texto); line-height: 1.6; }
+        body { font-family: 'Montserrat', sans-serif; background-color: var(--hueso); color: var(--texto); line-height: 1.8; }
         main { flex: 1; }
-
         h1, h2, h3 { font-family: 'Lora', serif; color: var(--madera); }
         
-        /* Navegación */
+        /* --- NAVEGACIÓN --- */
         .navbar { display: flex; justify-content: space-between; align-items: center; padding: 0 5%; height: 85px; background-color: rgba(249, 247, 242, 0.98); position: sticky; top: 0; z-index: 2000; border-bottom: 2px solid #E5DED1; box-shadow: var(--shadow); }
-        .logo-container { display: flex; align-items: center; text-decoration: none; color: var(--madera); }
-        .logo-nav-img { height: 60px; margin-right: 12px; }
+        .logo-container { display: flex; align-items: center; text-decoration: none; color: var(--madera); z-index: 2100; }
+        .logo-img { height: 60px; width: auto; margin-right: 12px; }
+        .logo-container strong { font-size: 1.05rem; letter-spacing: 1px; }
         .nav-links { display: flex; list-style: none; align-items: center; }
-        .nav-links li { margin-left: 25px; }
-        .nav-links a { text-decoration: none; color: var(--madera); font-weight: 600; font-size: 0.9rem; text-transform: uppercase; transition: 0.3s; }
+        .nav-links li { margin-left: 25px; position: relative; }
+        .nav-links a { text-decoration: none; color: var(--madera); font-weight: 600; font-size: 0.9rem; transition: 0.3s; text-transform: uppercase; }
         .nav-links a:hover { color: var(--tierra); }
-
-        /* Sección Contacto */
-        section { padding: 60px 5%; text-align: center; }
         
-        /* Contenedor del Logo en el cuerpo */
-        .contact-logo-box { margin-bottom: 20px; }
-        .contact-logo { height: 120px; width: auto; filter: drop-shadow(0 4px 8px rgba(0,0,0,0.1)); }
-
-        h2 { font-size: 2.5rem; margin-bottom: 10px; }
-        .subtitle { color: #777; margin-bottom: 40px; font-style: italic; }
+        .dropdown-content { display: none; position: absolute; background: var(--blanco); min-width: 200px; top: 100%; left: 0; box-shadow: var(--shadow); border-radius: 4px; padding: 10px 0; border-top: 3px solid var(--tierra); }
+        .dropdown-content a { padding: 10px 20px; display: block; text-transform: none; font-size: 0.85rem; color: var(--texto); }
+        .dropdown-content a:hover { background-color: var(--hueso); color: var(--tierra); }
+        .dropdown:hover .dropdown-content { display: block; }
         
-        .contact-container { width: 100%; max-width: 600px; background: var(--blanco); padding: 40px; border-radius: 12px; box-shadow: var(--shadow); text-align: left; margin: 0 auto; border-top: 5px solid var(--tierra); }
+        .hamburger { display: none; cursor: pointer; flex-direction: column; justify-content: space-between; width: 26px; height: 18px; z-index: 2100; }
+        .hamburger span { width: 100%; height: 3px; background: var(--madera); border-radius: 2px; transition: transform 0.3s ease, opacity 0.3s ease; }
+
+        /* --- CONTACTO --- */
+        section { padding: 40px 5%; text-align: center; }
+        .contact-logo-box { margin-bottom: 15px; }
+        .contact-logo { height: auto; max-height: 100px; width: auto; filter: drop-shadow(0 4px 8px rgba(0,0,0,0.1)); }
+        h2 { font-size: clamp(2rem, 5vw, 2.5rem); margin-bottom: 10px; }
+        .subtitle { color: #777; margin-bottom: 30px; font-style: italic; font-size: 0.95rem; }
+        
+        .contact-container { width: 100%; max-width: 600px; background: var(--blanco); padding: 30px 20px; border-radius: 12px; box-shadow: var(--shadow); text-align: left; margin: 0 auto; border-top: 5px solid var(--tierra); }
         .form-group { margin-bottom: 20px; }
         .form-group label { display: block; margin-bottom: 8px; font-weight: 600; font-size: 0.9rem; color: var(--madera); }
         .form-group input, .form-group textarea { width: 100%; padding: 12px; border: 1px solid #E5DED1; border-radius: 8px; font-family: inherit; background-color: #fdfdfd; }
         .form-group input:focus, .form-group textarea:focus { outline: 2px solid var(--tierra); border-color: transparent; }
         
-        .btn-warm { display: inline-block; padding: 15px 40px; background-color: var(--tierra); color: white; text-decoration: none; border-radius: 4px; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; transition: 0.3s; border: none; cursor: pointer; width: 100%; }
+        .btn-warm { display: inline-block; padding: 15px 40px; background-color: var(--tierra); color: white; text-decoration: none; border-radius: 4px; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; transition: 0.3s; border: none; cursor: pointer; width: 100%; font-size: 0.9rem; }
         .btn-warm:hover { background-color: var(--madera); transform: translateY(-2px); }
 
         footer { background: var(--madera); color: var(--hueso); padding: 40px 5%; text-align: center; }
         .footer-line { width: 100%; height: 1px; background: rgba(255,255,255,0.1); margin: 20px 0; }
 
-        @media (max-width: 768px) {
-            .nav-links { display: none; }
-            .contact-container { padding: 25px; }
+        /* --- RESPONSIVE MÓVIL --- */
+        @media (max-width: 992px) {
+            .hamburger { display: flex; }
+            .nav-links { position: fixed; top: 0; right: -100%; width: 280px; height: 100vh; background-color: rgba(249, 247, 242, 0.98); backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); flex-direction: column; align-items: flex-start; justify-content: flex-start; padding: 120px 40px 40px 40px; transition: right 0.4s cubic-bezier(0.25, 1, 0.5, 1); box-shadow: -5px 0 25px rgba(0,0,0,0.08); border-left: 1px solid #E5DED1; }
+            .nav-links.active { right: 0; }
+            .nav-links li { margin: 0 0 25px 0; width: 100%; text-align: left; }
+            .nav-links a { font-size: 1.1rem; display: block; letter-spacing: 1px; }
+            .dropdown-content { display: block; position: static; box-shadow: none; background: transparent; border: none; padding: 10px 0 0 15px; }
+            .dropdown-content a { padding: 8px 0; font-size: 0.95rem; color: var(--texto); opacity: 0.85; }
+            .hamburger.active span:nth-child(1) { transform: translateY(7.5px) rotate(45deg); }
+            .hamburger.active span:nth-child(2) { opacity: 0; }
+            .hamburger.active span:nth-child(3) { transform: translateY(-7.5px) rotate(-45deg); }
         }
     </style>
 </head>
@@ -58,13 +72,22 @@
 
 <header class="navbar">
     <a href="index.html" class="logo-container">
-        <img src="https://drive.google.com/thumbnail?id=17zcF4Qc9yRwIVoauzdQVPPr6f3JUfLmI&sz=w500" alt="Logo" class="logo-nav-img">
+        <img src="https://drive.google.com/thumbnail?id=17zcF4Qc9yRwIVoauzdQVPPr6f3JUfLmI&sz=w500" alt="Logo" class="logo-img">
         <strong>ARTESANOS DE ANCUD</strong>
     </a>
+    <div class="hamburger" id="hamburger">
+        <span></span><span></span><span></span>
+    </div>
     <nav>
-        <ul class="nav-links">
+        <ul class="nav-links" id="nav-links">
             <li><a href="index.html">Inicio</a></li>
-            <li><a href="artesanos.html">Artesanos</a></li>
+            <li class="dropdown">
+                <a href="artesanos.html">Artesanos ▼</a>
+                <div class="dropdown-content">
+                    <a href="index.html#nosotros">Nuestra Misión</a>
+                    <a href="artesanos.html">Galería de Oficios</a>
+                </div>
+            </li>
             <li><a href="noticias.html">Noticias</a></li>
             <li><a href="contacto.html" style="color: var(--tierra);">Contacto</a></li>
         </ul>
@@ -76,10 +99,8 @@
         <div class="contact-logo-box">
             <img src="https://drive.google.com/thumbnail?id=17zcF4Qc9yRwIVoauzdQVPPr6f3JUfLmI&sz=w1000" alt="Logo Artesanos" class="contact-logo">
         </div>
-
         <h2>Contacto</h2>
         <p class="subtitle">¿Tienes consultas sobre la muestra o nuestros oficios? Escríbenos.</p>
-        
         <div class="contact-container">
             <form action="#" method="POST">
                 <div class="form-group">
@@ -101,12 +122,32 @@
 </main>
 
 <footer>
-    <div style="max-width: 800px; margin: 0 auto;">
+    <div style="max-width: 800px; margin: 0 auto; display: flex; flex-direction: column; align-items: center; gap: 15px;">
+        <img src="img/logoartesanos.png" 
+             alt="Logo Agrupación de Artesanos" 
+             style="height: 75px; width: auto; display: block; filter: drop-shadow(0px 2px 4px rgba(0,0,0,0.15));">
+             
         <p><strong>Copyright © 2026 Agrupación de Artesanos y Oficios de Ancud</strong></p>
-        <div class="footer-line"></div>
+        <div class="footer-line" style="width: 100%; height: 1px; background: rgba(255,255,255,0.1); margin: 10px 0;"></div>
         <p style="font-size: 0.8rem; opacity: 0.7;">Diseñado por Sebastián Reyes Caimapo</p>
     </div>
 </footer>
 
+<script>
+    const hamburger = document.getElementById('hamburger');
+    const navLinks = document.getElementById('nav-links');
+    if (hamburger && navLinks) {
+        hamburger.addEventListener('click', () => {
+            hamburger.classList.toggle('active');
+            navLinks.classList.toggle('active');
+        });
+        document.querySelectorAll('.nav-links a').forEach(link => {
+            link.addEventListener('click', () => {
+                hamburger.classList.remove('active');
+                navLinks.classList.remove('active');
+            });
+        });
+    }
+</script>
 </body>
 </html>
